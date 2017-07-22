@@ -62,7 +62,7 @@ export class EventDialog extends React.Component<EventDialogProps, EventDialogSt
         onTouchTap={this.openHandler.bind(this)}
        />
       <Dialog
-        title='Neues Event'
+        title={`Neues Event am ${this.props.selectedDate.toLocaleDateString('de')}`}
         open={this.state.open}
         actions={actions}
       >
