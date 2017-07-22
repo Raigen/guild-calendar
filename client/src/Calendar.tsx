@@ -1,4 +1,5 @@
 import 'react-big-calendar/lib/css/react-big-calendar.css'
+import './Calendar.css'
 
 import * as React from 'react'
 import * as moment from 'moment'
@@ -17,7 +18,7 @@ export interface CalendarProps {
 
 export class RawCalendar extends React.Component<CalendarProps, any> {
   render () {
-    return <div className='calendar-component' style={{width: '49%', height: '650px', display: 'inline-block'}}>
+    return <div className='Calendar'>
       <BigCalendar
         events={this.props.appointments}
         startAccessor='from'

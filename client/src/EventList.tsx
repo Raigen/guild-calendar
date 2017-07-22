@@ -25,7 +25,7 @@ export class RawEventList extends React.Component<EventListProps, any> {
   }
   render () {
     const events = this.props.appointments.filter(event => event)
-    return <div style={{width: '49%', display: 'inline-block'}}>
+    return <div className='EventList'>
       <button onClick={this.addEvent.bind(this)}>Add Event</button>
       <ul className='event-list'>
         {events.map(event => (
