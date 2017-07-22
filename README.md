@@ -13,6 +13,8 @@
 
 # node-typescript-boilerplate
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/Raigen/guild-calendar.svg)](https://greenkeeper.io/)
+
 Minimalistic boilerplate to jump-start a [Node.js][nodejs] project in [TypeScript][typescript] [2.4][typescript-24].
 
 Provides a basic template, "batteries included":
