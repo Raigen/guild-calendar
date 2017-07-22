@@ -1,5 +1,6 @@
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import './Calendar.css'
+import 'moment/locale/de'
 
 import * as React from 'react'
 import * as moment from 'moment'
@@ -10,11 +11,22 @@ import { EventState } from './store/index'
 import { connect } from 'react-redux'
 import { selectDate } from './store/actions'
 
+moment.locale('de')
 BigCalendar.momentLocalizer(moment)
 
 export interface CalendarProps {
   appointments: AppointmentProps[],
   dispatch: any
+}
+
+const calendarMessages = {
+  month: 'Monat',
+  week: 'Woche',
+  day: 'Tag',
+  agenda: 'Agenda',
+  today: 'Heute',
+  previous: 'Zurück',
+  next: 'Weiter'
 }
 
 export class RawCalendar extends React.Component<CalendarProps, any> {
@@ -29,6 +41,8 @@ export class RawCalendar extends React.Component<CalendarProps, any> {
         endAccessor='to'
         selectable={true}
         onSelectSlot={this.selectDate.bind(this)}
+        messages={calendarMessages}
+        views={['month']}
       />
     </div>
   }
