@@ -8,11 +8,11 @@ export function addEvent (data: IAppointment): EventAction<IAppointment> {
     payload: data
   }
 }
-export function addEventAsync (event: IAppointment) {
-  return (dispatch: Dispatch<EventAction<IAppointment>>) => {
+export function addEventAsync (event: INewAppointment) {
+  return (dispatch: Dispatch<EventAction<INewAppointment>>) => {
     fetch('http://localhost:3001/api/appointments', {
       method: 'post',
-      body: event,
+      body: JSON.stringify(event),
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'

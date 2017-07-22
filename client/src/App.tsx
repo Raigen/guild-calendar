@@ -4,6 +4,7 @@ import * as React from 'react'
 
 import { Calendar } from './Calendar'
 import { EventList } from './EventList'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import { Provider } from 'react-redux'
 import { appointments } from './store/reducer'
 import { createStore } from './store'
@@ -22,16 +23,18 @@ store.dispatch(loadEventsAsync())
 class App extends React.Component<any, any> {
   render () {
     return (
-      <Provider store={store}>
-        <div className='App'>
-          <div className='App-header'>
-            <img src={logo} className='App-logo' alt='logo' />
-            <h2>Gilden Kalender</h2>
+      <MuiThemeProvider>
+        <Provider store={store}>
+          <div className='App'>
+            <div className='App-header'>
+              <img src={logo} className='App-logo' alt='logo' />
+              <h2>Gilden Kalender</h2>
+            </div>
+            <Calendar />
+            <EventList />
           </div>
-          <Calendar />
-          <EventList />
-        </div>
-      </Provider>
+        </Provider>
+      </MuiThemeProvider>
     )
   }
 }

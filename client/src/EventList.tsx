@@ -4,31 +4,31 @@ import { Appointment, AppointmentProps } from './Appointment'
 import { Dispatch, connect } from 'react-redux'
 
 import { EventAction } from './store/reducer'
+import { EventDialog } from './EventDialog'
 import { EventState } from './store/index'
 import { addEventAsync } from './store/actions'
 
 export interface EventListProps {
   appointments: AppointmentProps[],
   selectedDate: Date,
-  dispatch: Dispatch<EventAction<IAppointment>>
+  dispatch: Dispatch<EventAction<INewAppointment>>
 }
 
 export class RawEventList extends React.Component<EventListProps, any> {
-  addEvent () {
-    const { dispatch } = this.props
+  addEvent (title: string, creator: string) {
+    const { dispatch, selectedDate } = this.props
     dispatch(addEventAsync({
-      id: 'sdgdsfsfdsfds',
-      title: 'test',
-      from: new Date(),
-      to: new Date(),
-      participants: []
+      title,
+      from: selectedDate,
+      to: selectedDate,
+      participants: [creator]
     }))
   }
   render () {
     const { appointments, selectedDate } = this.props
     const events = appointments.filter(event => event.from.getDate() === selectedDate.getDate())
     return <div className='EventList'>
-      <button onClick={this.addEvent.bind(this)}>Add Event</button>
+      <EventDialog onCreateEvent={this.addEvent.bind(this)} />
       <ul className='event-list'>
         {events.map(event => (
           <Appointment

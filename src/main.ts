@@ -1,4 +1,5 @@
 import * as Koa from 'koa'
+import * as bodyParser from 'koa-bodyparser'
 import * as kcors from 'kcors'
 import * as route from 'koa-route'
 
@@ -8,6 +9,7 @@ const port = process.env.PORT || 3001
 const app = new Koa()
 
 app.use(kcors())
+app.use(bodyParser())
 
 app.use(async (ctx, next) => {
   const start = Date.now()
@@ -32,7 +34,8 @@ app.use(route.get('/api/appointments/:key', async (ctx, key: string) => {
 }))
 
 app.use(route.post('/api/appointments', async (ctx) => {
-  const appointment = await setAppointment('Test2', new Date(), new Date(), [])
+  const {title, from, to, participants} = ctx.request.body
+  const appointment = await setAppointment(title, from, to, participants)
   ctx.body = JSON.stringify(appointment)
 }))
 
