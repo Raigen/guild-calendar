@@ -10,7 +10,7 @@ export function addEvent (data: IAppointment): EventAction<IAppointment> {
 }
 export function addEventAsync (event: INewAppointment) {
   return (dispatch: Dispatch<EventAction<INewAppointment>>) => {
-    fetch('http://localhost:3001/api/appointments', {
+    fetch('/api/appointments', {
       method: 'post',
       body: JSON.stringify(event),
       headers: {
@@ -40,7 +40,7 @@ export function loadEvents (data: IAppointment[]): EventAction<IAppointment[]> {
 }
 export function loadEventsAsync () {
   return (dispatch: Dispatch<EventAction<IAppointment[]>>) => {
-    fetch('http://localhost:3001/api/appointments', {
+    fetch('/api/appointments', {
       method: 'get',
       headers: {
         'Accept': 'application/json'

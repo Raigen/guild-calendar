@@ -2,6 +2,7 @@ import * as Koa from 'koa'
 import * as bodyParser from 'koa-bodyparser'
 import * as kcors from 'kcors'
 import * as route from 'koa-route'
+import * as serve from 'koa-static'
 
 import { getAppointment, getAppointments, setAppointment } from './db'
 
@@ -20,7 +21,8 @@ app.use(async (ctx, next) => {
 
 app.use(async (ctx, next) => {
   await next()
-  ctx.response.type = 'json'
+  if (ctx.request.get('accept') === 'application/json')
+    ctx.response.type = 'json'
   ctx.set('Access-Control-Allow-Origin', '*')
 })
 
@@ -37,6 +39,10 @@ app.use(route.post('/api/appointments', async (ctx) => {
   const {title, from, to, participants} = ctx.request.body
   const appointment = await setAppointment(title, from, to, participants)
   ctx.body = JSON.stringify(appointment)
+}))
+
+app.use(serve('./client/build/', {
+  index: 'index.html'
 }))
 
 app.listen(port, () => {

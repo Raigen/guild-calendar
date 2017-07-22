@@ -1,7 +1,7 @@
 {
-  "name": "node-typescript-boilerplate",
-  "version": "0.0.0",
-  "description": "Minimalistic boilerplate to quick-start Node.js development in TypeScript.",
+  "name": "guild-calendar",
+  "version": "0.5.0",
+  "description": "Calendar and events for guild events",
   "engineStrict": true,
   "engines": {
     "node": ">= 8.0.0"
@@ -19,28 +19,32 @@
   "scripts": {
     "clean": "rimraf coverage build tmp",
     "build": "tsc -p tsconfig.release.json",
+    "build:client": "cd client && npm run build",
+    "build:all": "npm run build && npm run build:client",
     "watch": "tsc -w -p tsconfig.release.json",
     "lint": "tslint -t stylish --type-check --project 'tsconfig.json'",
     "pretest": "npm run lint",
+    "start": "npm run build:all && node build/src/main.js",
     "test": "npm run test-only",
     "test-only": "jest --coverage",
     "test:watch": "jest --watch"
   },
-  "author": "Jakub Synowiec <github@jakubsynowiec.info>",
+  "author": "Florian Oellerich <falkentavio@hotmail.de>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jsynowiec/node-typescript-boilerplate.git"
+    "url": "https://github.com/Raigen/guild-calendar.git"
   },
   "bugs": {
-    "url": "https://github.com/jsynowiec/node-typescript-boilerplate/issues"
+    "url": "https://github.com/Raigen/guild-calendar/issues"
   },
-  "homepage": "https://github.com/jsynowiec/node-typescript-boilerplate#readme",
+  "homepage": "https://github.com/Raigen/guild-calendar#readme",
   "dependencies": {
     "@types/bluebird": "^3.5.8",
     "@types/koa": "^2.0.39",
     "@types/koa-bodyparser": "^3.0.23",
     "@types/koa-route": "^3.2.0",
+    "@types/koa-static": "^3.0.0",
     "@types/redis": "^2.6.0",
     "@types/uuid": "^3.4.0",
     "bluebird": "^3.5.0",
@@ -48,6 +52,7 @@
     "koa": "^2.3.0",
     "koa-bodyparser": "^4.2.0",
     "koa-route": "^3.2.0",
+    "koa-static": "^4.0.1",
     "redis": "^2.7.1",
     "tslib": "~1.7.1",
     "uuid": "^3.1.0"
