@@ -9,7 +9,7 @@ import { addEventAsync } from './store/actions'
 
 export interface EventListProps {
   appointments: AppointmentProps[],
-  dispatch: Dispatch<EventAction>
+  dispatch: Dispatch<EventAction<IAppointment>>
 }
 
 export class RawEventList extends React.Component<EventListProps, any> {

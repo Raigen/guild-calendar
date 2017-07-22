@@ -2,14 +2,14 @@ import { Dispatch } from 'redux'
 import { EventAction } from './reducer'
 
 export const ADD_EVENT = 'ADD_EVENT'
-export function addEvent (data: IAppointment): EventAction {
+export function addEvent (data: IAppointment): EventAction<IAppointment> {
   return {
     type: ADD_EVENT,
     payload: data
   }
 }
 export function addEventAsync (event: IAppointment) {
-  return (dispatch: Dispatch<EventAction>) => {
+  return (dispatch: Dispatch<EventAction<IAppointment>>) => {
     fetch('http://localhost:3001/api/appointments', {
       method: 'post',
       body: event,
@@ -25,6 +25,34 @@ export function addEventAsync (event: IAppointment) {
       to: new Date(data.to)
     }))
     .then(data => dispatch(addEvent(data)))
+    .catch(error => {
+      console.log(error)
+    })
+  }
+}
+
+export const LOAD_EVENTS = 'LOAD_EVENTS'
+export function loadEvents (data: IAppointment[]): EventAction<IAppointment[]> {
+  return {
+    type: LOAD_EVENTS,
+    payload: data
+  }
+}
+export function loadEventsAsync () {
+  return (dispatch: Dispatch<EventAction<IAppointment[]>>) => {
+    fetch('http://localhost:3001/api/appointments', {
+      method: 'get',
+      headers: {
+        'Accept': 'application/json'
+      }
+    })
+    .then(res => res.json())
+    .then((data: any[]) => data.map(app => ({
+      ...app,
+      from: new Date(app.from),
+      to: new Date(app.to)
+    })))
+    .then((data: IAppointment[]) => dispatch(loadEvents(data)))
     .catch(error => {
       console.log(error)
     })

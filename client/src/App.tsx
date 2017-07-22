@@ -7,22 +7,16 @@ import { EventList } from './EventList'
 import { Provider } from 'react-redux'
 import { appointments } from './store/reducer'
 import { createStore } from './store'
+import { loadEventsAsync } from './store/actions'
 
 const logo = require('./logo.svg')
 
 const initialState = {
-  appointments: [
-    {
-      id: 'fsdfsdfsdfds',
-      title: 'Test 1',
-      from: new Date(),
-      to: new Date(),
-      participants: []
-    }
-  ]
+  appointments: []
 }
 
 const store = createStore(appointments, initialState)
+store.dispatch(loadEventsAsync())
 
 class App extends React.Component<any, any> {
   render () {
