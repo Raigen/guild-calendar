@@ -9,10 +9,11 @@ cache:
 # before_script: greenkeeper-lockfile-update
 # after_script: greenkeeper-lockfile-upload
 install:
-- npm install
+- yarn install
+- cd client && yarn install && cd ..
 script:
 - npm run build
-- cd client && npm run build
+- cd client && npm run build && cd ..
 deploy:
   provider: heroku
   api_key:
