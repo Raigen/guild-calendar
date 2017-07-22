@@ -1,9 +1,10 @@
 import * as React from 'react'
 
-import { Dialog, FlatButton, RaisedButton, TextField } from 'material-ui'
+import { Dialog, FlatButton, RaisedButton, TextField, TimePicker } from 'material-ui'
 
 interface EventDialogProps {
-  onCreateEvent: (title: string, creator: string) => void
+  onCreateEvent: (title: string, creator: string, from: Date, to: Date) => void
+  selectedDate: Date
 }
 
 interface EventDialogState {
@@ -26,12 +27,27 @@ export class EventDialog extends React.Component<EventDialogProps, EventDialogSt
   }
 
   saveNewEvent () {
+    const dateFrom = new Date(this.props.selectedDate.toDateString())
+    const dateTo = new Date(this.props.selectedDate.toDateString())
     const elements: HTMLFormControlsCollection = (this.form as HTMLFormElement).elements
     const titleElement: HTMLInputElement = elements.namedItem('title') as HTMLInputElement
-    const CreatorElement: HTMLInputElement = elements.namedItem('creator') as HTMLInputElement
+    const creatorElement: HTMLInputElement = elements.namedItem('creator') as HTMLInputElement
+    const fromElement: HTMLInputElement = elements.namedItem('from') as HTMLInputElement
+    const toElement: HTMLInputElement = elements.namedItem('to') as HTMLInputElement
     const title = titleElement.value
-    const creator = CreatorElement.value
-    this.props.onCreateEvent(title, creator)
+    const creator = creatorElement.value
+
+    const fromHour = Number.parseInt(fromElement.value.substr(0, 2), 10)
+    const fromMinute = Number.parseInt(fromElement.value.substr(3, 2), 10)
+    const toHour = Number.parseInt(toElement.value.substr(0, 2), 10)
+    const toMinute = Number.parseInt(toElement.value.substr(3, 2), 10)
+
+    dateFrom.setHours(fromHour)
+    dateFrom.setMinutes(fromMinute)
+    dateTo.setHours(toHour)
+    dateTo.setMinutes(toMinute)
+
+    this.props.onCreateEvent(title, creator, dateFrom, dateTo)
     this.closeHandler()
   }
 
@@ -59,6 +75,18 @@ export class EventDialog extends React.Component<EventDialogProps, EventDialogSt
           <TextField
             floatingLabelText='Eventname'
             name='title'
+          />
+          <TimePicker
+            name='from'
+            hintText='Von'
+            minutesStep={5}
+            format='24hr'
+          />
+          <TimePicker
+            name='to'
+            hintText='Bis'
+            minutesStep={5}
+            format='24hr'
           />
         </form>
       </Dialog>

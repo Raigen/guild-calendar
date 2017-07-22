@@ -15,12 +15,12 @@ export interface EventListProps {
 }
 
 export class RawEventList extends React.Component<EventListProps, any> {
-  addEvent (title: string, creator: string) {
-    const { dispatch, selectedDate } = this.props
+  addEvent (title: string, creator: string, from: Date, to: Date) {
+    const { dispatch } = this.props
     dispatch(addEventAsync({
       title,
-      from: selectedDate,
-      to: selectedDate,
+      from,
+      to,
       participants: [creator]
     }))
   }
@@ -28,7 +28,10 @@ export class RawEventList extends React.Component<EventListProps, any> {
     const { appointments, selectedDate } = this.props
     const events = appointments.filter(event => event.from.getDate() === selectedDate.getDate())
     return <div className='EventList'>
-      <EventDialog onCreateEvent={this.addEvent.bind(this)} />
+      <EventDialog
+        onCreateEvent={this.addEvent.bind(this)}
+        selectedDate={selectedDate}
+      />
       <ul className='event-list'>
         {events.map(event => (
           <Appointment
