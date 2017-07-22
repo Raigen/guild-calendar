@@ -22,7 +22,9 @@ export function getAppointments (): Promise<any[]> {
 }
 
 export function getAppointment (key: string): Promise<any> {
-  return client.hgetAsync('events', key).then(raw => JSON.parse(raw))
+  return client.hgetAsync('events', key)
+    .then(raw => JSON.parse(raw))
+    .then(data => ({id: key, ...data}))
 }
 
 export function setAppointment (
@@ -35,4 +37,5 @@ export function setAppointment (
   return client.hmsetAsync('events', {
     [key]: JSON.stringify({title, from, to, participants: participants})
   })
+  .then(() => getAppointment(key))
 }

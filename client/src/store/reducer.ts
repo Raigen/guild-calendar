@@ -9,11 +9,11 @@ export function appointments (state: EventState, action: EventAction): EventStat
   switch (action.type) {
     case 'ADD_EVENT':
       return Object.assign({}, state, {
-        events: state.appointments.concat([action.payload])
+        appointments: state.appointments.concat([action.payload])
       })
     case 'REMOVE_EVENT':
       return Object.assign({}, state, {
-        events: state.appointments.splice(state.appointments.indexOf(action.payload), 1)
+        appointments: state.appointments.splice(state.appointments.indexOf(action.payload), 1)
       })
     default:
       return state

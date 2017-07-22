@@ -13,6 +13,7 @@ const logo = require('./logo.svg')
 const initialState = {
   appointments: [
     {
+      id: 'fsdfsdfsdfds',
       title: 'Test 1',
       from: new Date(),
       to: new Date(),
