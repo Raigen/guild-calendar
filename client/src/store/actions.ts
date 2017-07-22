@@ -58,3 +58,11 @@ export function loadEventsAsync () {
     })
   }
 }
+
+export const SELECT_DATE = 'SELECT_DATE'
+export function selectDate (date: Date) {
+  return {
+    type: SELECT_DATE,
+    payload: date
+  }
+}

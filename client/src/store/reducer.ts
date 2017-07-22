@@ -19,6 +19,11 @@ export function appointments (state: EventState, action: EventAction<any>): Even
       return Object.assign({}, state, {
         appointments: state.appointments.splice(state.appointments.indexOf(action.payload), 1)
       })
+
+    case 'SELECT_DATE':
+      return Object.assign({}, state, {
+        selectedDate: action.payload
+      })
     default:
       return state
   }

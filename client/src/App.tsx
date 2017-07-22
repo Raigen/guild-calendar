@@ -12,7 +12,8 @@ import { loadEventsAsync } from './store/actions'
 const logo = require('./logo.svg')
 
 const initialState = {
-  appointments: []
+  appointments: [],
+  selectedDate: new Date()
 }
 
 const store = createStore(appointments, initialState)

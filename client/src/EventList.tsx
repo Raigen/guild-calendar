@@ -9,6 +9,7 @@ import { addEventAsync } from './store/actions'
 
 export interface EventListProps {
   appointments: AppointmentProps[],
+  selectedDate: Date,
   dispatch: Dispatch<EventAction<IAppointment>>
 }
 
@@ -24,7 +25,8 @@ export class RawEventList extends React.Component<EventListProps, any> {
     }))
   }
   render () {
-    const events = this.props.appointments.filter(event => event)
+    const { appointments, selectedDate } = this.props
+    const events = appointments.filter(event => event.from.getDate() === selectedDate.getDate())
     return <div className='EventList'>
       <button onClick={this.addEvent.bind(this)}>Add Event</button>
       <ul className='event-list'>
@@ -44,5 +46,6 @@ export class RawEventList extends React.Component<EventListProps, any> {
 }
 
 export const EventList = connect((rootState: EventState) => ({
-  appointments: rootState.appointments
+  appointments: rootState.appointments,
+  selectedDate: rootState.selectedDate
 }))(RawEventList)

@@ -8,6 +8,7 @@ import { AppointmentProps } from './Appointment'
 import BigCalendar from 'react-big-calendar'
 import { EventState } from './store/index'
 import { connect } from 'react-redux'
+import { selectDate } from './store/actions'
 
 BigCalendar.momentLocalizer(moment)
 
@@ -17,12 +18,17 @@ export interface CalendarProps {
 }
 
 export class RawCalendar extends React.Component<CalendarProps, any> {
+  selectDate (event: any) {
+    this.props.dispatch(selectDate(event.start))
+  }
   render () {
     return <div className='Calendar'>
       <BigCalendar
         events={this.props.appointments}
         startAccessor='from'
         endAccessor='to'
+        selectable={true}
+        onSelectSlot={this.selectDate.bind(this)}
       />
     </div>
   }
