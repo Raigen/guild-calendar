@@ -12,7 +12,6 @@ after_script: greenkeeper-lockfile-upload
 
 install:
   - npm install
-  - cd client && npm install && cd ..
 script:
   - npm run build
   - cd client && npm run build
