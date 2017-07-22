@@ -5,5 +5,4 @@
 [![Code Climate](https://codeclimate.com/github/Raigen/guild-calendar/badges/gpa.svg)](https://codeclimate.com/github/Raigen/guild-calendar)
 [![Issue Count](https://codeclimate.com/github/Raigen/guild-calendar/badges/issue_count.svg)](https://codeclimate.com/github/Raigen/guild-calendar)
 
-[![MIT License][license-badge]][LICENSE]
 # guild-calendar
