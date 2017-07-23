@@ -31,6 +31,14 @@ export function addEventAsync (event: INewAppointment) {
   }
 }
 
+export const UPDATE_EVENT = 'UPDATE_EVENT'
+export function updateEvent (data: IAppointment): EventAction<IAppointment> {
+  return {
+    type: UPDATE_EVENT,
+    payload: data
+  }
+}
+
 export const LOAD_EVENTS = 'LOAD_EVENTS'
 export function loadEvents (data: IAppointment[]): EventAction<IAppointment[]> {
   return {
@@ -53,6 +61,30 @@ export function loadEventsAsync () {
       to: new Date(app.to)
     })))
     .then((data: IAppointment[]) => dispatch(loadEvents(data)))
+    .catch(error => {
+      console.log(error)
+    })
+  }
+}
+
+export const ADD_PARTICIPANT = 'ADD_PARTICIPANT'
+export function addParticipantAsync (participant: string, eventId: string) {
+  return (dispatch: Dispatch<EventAction<string>>) => {
+    fetch(`/api/appointments/${eventId}/participant`, {
+      method: 'post',
+      body: JSON.stringify({participant}),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(res => res.json())
+    .then((data: any) => ({
+      ...data,
+      from: new Date(data.from),
+      to: new Date(data.to)
+    }))
+    .then((data: IAppointment) => dispatch(updateEvent(data)))
     .catch(error => {
       console.log(error)
     })

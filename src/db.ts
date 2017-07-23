@@ -19,16 +19,20 @@ const client = Redis.createClient(redisUrl) as RedisClient
 export function getAppointments (): Promise<any[]> {
   return client
     .hgetallAsync('events')
-    .then(appointments => Object.keys(appointments).map(key => {
-      const app = JSON.parse(appointments[key])
-      return {
-        id: key,
-        title: app.title,
-        from: app.from,
-        to: app.to,
-        participants: app.participants
-      }
-    }))
+    .then(appointments =>
+      appointments
+        ? Object.keys(appointments).map(key => {
+          const app = JSON.parse(appointments[key])
+          return {
+            id: key,
+            title: app.title,
+            from: app.from,
+            to: app.to,
+            participants: app.participants
+          }
+        })
+        : []
+    )
 }
 
 export function getAppointment (key: string): Promise<any> {
@@ -41,9 +45,10 @@ export function setAppointment (
   title: string,
   from: Date,
   to: Date,
-  participants: string[]
+  participants: string[],
+  id?: string
 ): Promise<any> {
-  const key = uuid.v4()
+  const key = id ? id : uuid.v4()
   return client.hmsetAsync('events', {
     [key]: JSON.stringify({title, from, to, participants: participants})
   })

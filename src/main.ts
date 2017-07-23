@@ -41,6 +41,15 @@ app.use(route.post('/api/appointments', async (ctx) => {
   ctx.body = JSON.stringify(appointment)
 }))
 
+app.use(route.post('/api/appointments/:key/participant', async (ctx, key: string) => {
+  const { participant } = ctx.request.body
+  const appointment = await getAppointment(key)
+  appointment.participants.push(participant)
+  const { title, from, to, participants, id} = appointment
+  const newAappointment = await setAppointment(title, from, to, participants, id)
+  ctx.body = JSON.stringify(newAappointment)
+}))
+
 app.use(serve('./client/build/', {
   index: 'index.html'
 }))

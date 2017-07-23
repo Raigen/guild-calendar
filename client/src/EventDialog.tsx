@@ -67,7 +67,7 @@ export class EventDialog extends React.Component<EventDialogProps, EventDialogSt
         open={this.state.open}
         actions={actions}
       >
-        <form method='post' name='eventForm' ref={form => this.form = form}>
+        <form method='post' action='#' name='eventForm' ref={form => this.form = form}>
           <TextField
             floatingLabelText='Ersteller'
             name='creator'
