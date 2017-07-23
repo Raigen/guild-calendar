@@ -57,6 +57,7 @@ export class EventDialog extends React.Component<EventDialogProps, EventDialogSt
       <FlatButton label='Abbrechen' onTouchTap={this.closeHandler.bind(this)} />
     ]
     return <div className='EventDialog'>
+      <h2>{this.props.selectedDate.toLocaleDateString('de')}</h2>
       <RaisedButton
         label='Neues Event'
         onTouchTap={this.openHandler.bind(this)}
