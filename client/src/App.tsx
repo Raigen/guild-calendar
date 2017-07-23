@@ -28,7 +28,7 @@ class App extends React.Component<any, any> {
           <div className='App'>
             <div className='App-header'>
               <img src={logo} className='App-logo' alt='logo' />
-              <h2>Gilden Kalender</h2>
+              <h2>Die Entdecker Gold Kalender</h2>
             </div>
             <Calendar />
             <EventList />
