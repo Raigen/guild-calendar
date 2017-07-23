@@ -42,6 +42,7 @@ export class Appointment extends React.Component<AppointmentProps, object> {
               type='text'
               floatingLabelText='Teilnehmer'
               name='participant'
+              required={true}
             />
             <FlatButton
               type='submit'

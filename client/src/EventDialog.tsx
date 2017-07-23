@@ -70,12 +70,14 @@ export class EventDialog extends React.Component<EventDialogProps, EventDialogSt
         <form method='post' action='#' name='eventForm' ref={form => this.form = form}>
           <TextField
             floatingLabelText='Ersteller'
+            required={true}
             name='creator'
           />
           <br />
           <TextField
             floatingLabelText='Eventname'
             name='title'
+            required={true}
           />
           <TimePicker
             name='from'
