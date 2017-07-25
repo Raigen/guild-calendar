@@ -5,18 +5,20 @@ import 'moment/locale/de'
 import * as React from 'react'
 import * as moment from 'moment'
 
+import { SelectDateAction, selectDate } from './store/actions'
+
 import { AppointmentProps } from './Appointment'
 import BigCalendar from 'react-big-calendar'
+import { Dispatch } from 'redux'
 import { EventState } from './store/index'
 import { connect } from 'react-redux'
-import { selectDate } from './store/actions'
 
 moment.locale('de')
 BigCalendar.momentLocalizer(moment)
 
 export interface CalendarProps {
   appointments: AppointmentProps[],
-  dispatch: any
+  dispatch: Dispatch<SelectDateAction>
 }
 
 const calendarMessages = {

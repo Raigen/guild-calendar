@@ -1,17 +1,17 @@
 import * as React from 'react'
 
+import { AddEventAction, AddParticipantAction } from './store/actions'
 import { Appointment, AppointmentProps } from './Appointment'
 import { Dispatch, connect } from 'react-redux'
 import { addEventAsync, addParticipantAsync } from './store/actions'
 
-import { EventAction } from './store/reducer'
 import { EventDialog } from './EventDialog'
 import { EventState } from './store/index'
 
 export interface EventListProps {
   appointments: AppointmentProps[],
   selectedDate: Date,
-  dispatch: Dispatch<EventAction<INewAppointment | IAppointment>>
+  dispatch: Dispatch<AddEventAction | AddParticipantAction>
 }
 
 export class RawEventList extends React.Component<EventListProps, any> {
