@@ -40,7 +40,7 @@ export function addEventAsync (event: INewAppointment) {
 
 export type UPDATE_EVENT = 'appointments/UPDATE_EVENT'
 export const UPDATE_EVENT: UPDATE_EVENT = 'appointments/UPDATE_EVENT'
-type UpdateEventAction = {
+export type UpdateEventAction = {
   type: UPDATE_EVENT,
   payload: IAppointment
 }

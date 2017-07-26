@@ -1,18 +1,19 @@
 import {
   ADD_EVENT,
+  AddEventAction,
   LOAD_EVENTS,
+  LoadEventAction,
   SELECT_DATE,
-  UPDATE_EVENT
+  SelectDateAction,
+  UPDATE_EVENT,
+  UpdateEventAction
 } from './actions'
 
-import { Action } from 'redux'
 import { EventState } from './index'
 
-export interface EventAction<A> extends Action {
-  payload: A
-}
+type EventAction = AddEventAction | LoadEventAction | SelectDateAction | UpdateEventAction
 
-export function appointments (state: EventState, action: EventAction<any>): EventState {
+export function appointments (state: EventState, action: EventAction): EventState {
   switch (action.type) {
     case UPDATE_EVENT:
       const eventIndex = state.appointments.findIndex(event => event.id === action.payload.id)
