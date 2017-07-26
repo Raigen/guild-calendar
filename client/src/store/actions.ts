@@ -1,4 +1,7 @@
-import { Dispatch } from 'redux'
+import { EventState } from './index'
+import { Dispatch as ReduxDispatch } from 'redux'
+
+export type Dispatch = ReduxDispatch<EventState>
 
 // const hostname: string = 'http://localhost:3001'
 const hostname: string = ''
@@ -16,7 +19,7 @@ export function addEvent (data: IAppointment): AddEventAction {
   }
 }
 export function addEventAsync (event: INewAppointment) {
-  return (dispatch: Dispatch<AddEventAction>) => {
+  return (dispatch: Dispatch) => {
     fetch(`${hostname}/api/appointments`, {
       method: 'post',
       body: JSON.stringify(event),
@@ -64,7 +67,7 @@ export function loadEvents (data: IAppointment[]): LoadEventAction {
   }
 }
 export function loadEventsAsync () {
-  return (dispatch: Dispatch<LoadEventAction>) => {
+  return (dispatch: Dispatch) => {
     fetch(`${hostname}/api/appointments`, {
       method: 'get',
       headers: {
@@ -84,6 +87,34 @@ export function loadEventsAsync () {
   }
 }
 
+export type DELETE_EVENT = 'appointment/DELETE_EVENT'
+export const DELETE_EVENT: DELETE_EVENT = 'appointment/DELETE_EVENT'
+export type DeleteEventAction = {
+  type: DELETE_EVENT,
+  payload: string
+}
+
+export function deleteEvent (data: string): DeleteEventAction {
+  return {
+    type: DELETE_EVENT,
+    payload: data
+  }
+}
+
+export function deleteEventAsync (eventId: string) {
+  return (dispatch: Dispatch) => {
+    fetch(`${hostname}/api/appointments/${eventId}`, {
+      method: 'delete',
+      headers: {
+        'Accept': 'application/json',
+      }
+    })
+    .then(res => res.json())
+    .then(() => dispatch(deleteEvent(eventId)))
+    .catch(error => console.log(error))
+  }
+}
+
 export type ADD_PARTICIPANT = 'appointments/ADD_PARTICIPANT'
 export const ADD_PARTICIPANT: ADD_PARTICIPANT = 'appointments/ADD_PARTICIPANT'
 export type AddParticipantAction = {
@@ -91,7 +122,7 @@ export type AddParticipantAction = {
   payload: string
 }
 export function addParticipantAsync (participant: string, eventId: string) {
-  return (dispatch: Dispatch<UpdateEventAction>) => {
+  return (dispatch: Dispatch) => {
     fetch(`${hostname}/api/appointments/${eventId}/participant`, {
       method: 'post',
       body: JSON.stringify({participant}),
