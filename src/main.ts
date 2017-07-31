@@ -21,8 +21,9 @@ app.use(async (ctx, next) => {
 
 app.use(async (ctx, next) => {
   await next()
-  if (ctx.request.get('accept') === 'application/json')
+  if (ctx.request.get('accept') === 'application/json') {
     ctx.response.type = 'json'
+  }
   ctx.set('Access-Control-Allow-Origin', '*')
 })
 
