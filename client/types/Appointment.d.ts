@@ -7,4 +7,3 @@ declare interface INewAppointment {
 declare interface IAppointment extends INewAppointment {
   id: string
 }
-
