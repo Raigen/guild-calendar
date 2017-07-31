@@ -67,9 +67,9 @@
   version "8.0.14"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-8.0.14.tgz#4a19dc6bb61d16c01cbadc7b30ac23518fff176b"
 
-"@types/node@~6.0.78":
-  version "6.0.84"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-6.0.84.tgz#193ffe5a9f42864d425ffd9739d95b753c6a1eab"
+"@types/node@~8.0.14":
+  version "8.0.17"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-8.0.17.tgz#677bc8c118cfb76013febb62ede1f31d2c7222a1"
 
 "@types/redis@^2.6.0":
   version "2.6.0"
@@ -2265,9 +2265,9 @@ tslint-eslint-rules@^4.0.0:
     tslib "^1.0.0"
     tsutils "^1.4.0"
 
-tslint@~5.4.3:
-  version "5.4.3"
-  resolved "https://registry.yarnpkg.com/tslint/-/tslint-5.4.3.tgz#761c8402b80e347b7733a04390a757b253580467"
+tslint@~5.5.0:
+  version "5.5.0"
+  resolved "https://registry.yarnpkg.com/tslint/-/tslint-5.5.0.tgz#10e8dab3e3061fa61e9442e8cee3982acf20a6aa"
   dependencies:
     babel-code-frame "^6.22.0"
     colors "^1.1.2"
@@ -2278,21 +2278,21 @@ tslint@~5.4.3:
     resolve "^1.3.2"
     semver "^5.3.0"
     tslib "^1.7.1"
-    tsutils "^2.3.0"
+    tsutils "^2.5.1"
 
 tsutils@^1.4.0:
   version "1.9.1"
   resolved "https://registry.yarnpkg.com/tsutils/-/tsutils-1.9.1.tgz#b9f9ab44e55af9681831d5f28d0aeeaf5c750cb0"
 
-tsutils@^2.3.0:
-  version "2.7.1"
-  resolved "https://registry.yarnpkg.com/tsutils/-/tsutils-2.7.1.tgz#411a0e9466525a2b2869260a55620d7292155e24"
+tsutils@^2.5.1:
+  version "2.8.0"
+  resolved "https://registry.yarnpkg.com/tsutils/-/tsutils-2.8.0.tgz#0160173729b3bf138628dd14a1537e00851d814a"
   dependencies:
     tslib "^1.7.1"
 
-tsutils@~2.5.1:
-  version "2.5.1"
-  resolved "https://registry.yarnpkg.com/tsutils/-/tsutils-2.5.1.tgz#c2001390c79eec1a5ccfa7ac12d599639683e0cf"
+tsutils@~2.7.1:
+  version "2.7.1"
+  resolved "https://registry.yarnpkg.com/tsutils/-/tsutils-2.7.1.tgz#411a0e9466525a2b2869260a55620d7292155e24"
   dependencies:
     tslib "^1.7.1"
 
