@@ -1,34 +1,43 @@
 import * as React from 'react'
 
+import { AddEventAction, AddParticipantAction } from './store/actions'
 import { Appointment, AppointmentProps } from './Appointment'
 import { Dispatch, connect } from 'react-redux'
+import { addEventAsync, addParticipantAsync } from './store/actions'
 
-import { EventAction } from './store/reducer'
 import { EventDialog } from './EventDialog'
 import { EventState } from './store/index'
-import { addEventAsync } from './store/actions'
 
 export interface EventListProps {
   appointments: AppointmentProps[],
   selectedDate: Date,
-  dispatch: Dispatch<EventAction<INewAppointment>>
+  dispatch: Dispatch<AddEventAction | AddParticipantAction>
 }
 
 export class RawEventList extends React.Component<EventListProps, any> {
-  addEvent (title: string, creator: string) {
-    const { dispatch, selectedDate } = this.props
+  addEvent (title: string, creator: string, from: Date, to: Date) {
+    const { dispatch } = this.props
     dispatch(addEventAsync({
       title,
-      from: selectedDate,
-      to: selectedDate,
+      from,
+      to,
       participants: [creator]
     }))
   }
+
+  addParticipant (name: string, eventId: string) {
+    const { dispatch } = this.props
+    dispatch(addParticipantAsync(name, eventId))
+  }
+
   render () {
     const { appointments, selectedDate } = this.props
     const events = appointments.filter(event => event.from.getDate() === selectedDate.getDate())
     return <div className='EventList'>
-      <EventDialog onCreateEvent={this.addEvent.bind(this)} />
+      <EventDialog
+        onCreateEvent={this.addEvent.bind(this)}
+        selectedDate={selectedDate}
+      />
       <ul className='event-list'>
         {events.map(event => (
           <Appointment
@@ -38,6 +47,7 @@ export class RawEventList extends React.Component<EventListProps, any> {
             to={event.to}
             participants={event.participants}
             title={event.title}
+            onParticipantAdd={this.addParticipant.bind(this)}
           />
         ))}
       </ul>

@@ -1,26 +1,38 @@
-import { Action } from 'redux'
+import {
+  ADD_EVENT,
+  AddEventAction,
+  LOAD_EVENTS,
+  LoadEventAction,
+  SELECT_DATE,
+  SelectDateAction,
+  UPDATE_EVENT,
+  UpdateEventAction
+} from './actions'
+
 import { EventState } from './index'
 
-export interface EventAction<A> extends Action {
-  payload: A
-}
+type EventAction = AddEventAction | LoadEventAction | SelectDateAction | UpdateEventAction
 
-export function appointments (state: EventState, action: EventAction<any>): EventState {
+export function appointments (state: EventState, action: EventAction): EventState {
   switch (action.type) {
-    case 'LOAD_EVENTS':
+    case UPDATE_EVENT:
+      const eventIndex = state.appointments.findIndex(event => event.id === action.payload.id)
+      state.appointments.splice(eventIndex, 1, action.payload)
+      return Object.assign({}, state)
+    case LOAD_EVENTS:
       return Object.assign({}, state, {
         appointments: action.payload
       })
-    case 'ADD_EVENT':
+    case ADD_EVENT:
       return Object.assign({}, state, {
         appointments: state.appointments.concat([action.payload])
       })
-    case 'REMOVE_EVENT':
-      return Object.assign({}, state, {
-        appointments: state.appointments.splice(state.appointments.indexOf(action.payload), 1)
-      })
+    // case 'REMOVE_EVENT':
+    //   return Object.assign({}, state, {
+    //     appointments: state.appointments.splice(state.appointments.indexOf(action.payload), 1)
+    //   })
 
-    case 'SELECT_DATE':
+    case SELECT_DATE:
       return Object.assign({}, state, {
         selectedDate: action.payload
       })

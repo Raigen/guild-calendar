@@ -5,8 +5,8 @@ import { createOpbeatMiddleware } from 'opbeat-react/redux'
 import thunk from 'redux-thunk'
 
 export interface EventState {
-  appointments: IAppointment[],
-  selectedDate: Date | undefined
+  readonly appointments: IAppointment[],
+  readonly selectedDate: Date | undefined
 }
 
 export function createStore (reducer: redux.Reducer<EventState>, initialState: EventState): redux.Store<EventState> {

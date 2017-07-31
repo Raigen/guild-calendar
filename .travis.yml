@@ -1,18 +1,21 @@
 language: node_js
 node_js:
-  - "8"
+- '8'
 cache:
   yarn: true
   directories:
-    - node_modules
-
-before_install: yarn global add greenkeeper-lockfile@1
-before_script: greenkeeper-lockfile-update
-after_script: greenkeeper-lockfile-upload
-
+  - node_modules
+# before_install: yarn global add greenkeeper-lockfile@1
+# before_script: greenkeeper-lockfile-update
+# after_script: greenkeeper-lockfile-upload
 install:
-  - npm install
-  - cd client && npm install
+- yarn install
+- cd client && yarn install && cd ..
 script:
-  - npm run build
-  - cd client && npm run build
+- npm run build:all
+deploy:
+  provider: heroku
+  api_key:
+    secure: CuZg1RY+TgQyhry4HWzUx16K8wL4FdYC0sjqWNQG9h/HATjXcfd/t6tOpFNvzZGAdVldTQFnD2OwEMvjN3MGtEyILGKHVBU9QDTzuiE4vIbqcQsMLEhFZDiqH7Kegy+jMTAVzm+JA43GqxPR2PfYeR7QFsy5uAORzqZxv4pwYQtga9nzT3hCV0lDglpEp1uBMNW7jo5aMvk7U+Wo1sb/qdslxIS8t+pqFsoSrtqUd6l0aS+TCBp4QtcN6hQ3Cd+Q4MM09UuIkcFYyH26TdBrcP/F5VwKbGw1SPrJNkTWUNir00debF42VYED6j+pcdOyJjK1oz4u+yTgmDFjPO6mzJYOb0ZCi/S+mXRsBwYxPa44u8OvsDm6LzJ6YO9RgLpPreEhIBfFC7PxWmt0mCmdoe+cttzbQTz8BtxJqMPSTENBbz1NaHWv7RmPH49lnJr8TdVJj6bFOvDukpOgo5BqDL0Z33jLFl3z0URfFEAojveNYK0qdOjqZ4WjBrOX9/rXz5fry6QFfFbMg9V9G7UiXNQzSzLmw6l6iaVHWnbT+ljc6U9sXZ6tl2lh+zqF5tFnZ0/ba0/X5y7kJ4Jto+TSB6JWCDesbdLYs6r8ZGFjnkk4wa4p2j5/pbj+D5PaB1cULMjo7LXTM8dKFg5OlZcDr8+5yvkoaL92lnsZ1czqHGs=
+  app: deg-kalender
+  skip_cleanup: true
