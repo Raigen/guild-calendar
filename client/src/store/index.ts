@@ -5,7 +5,7 @@ import { createOpbeatMiddleware } from 'opbeat-react/redux'
 import thunk from 'redux-thunk'
 
 export interface EventState {
-  readonly appointments: IAppointment[],
+  readonly appointments: ReadonlyArray<IAppointment>
   readonly selectedDate: Date | undefined
 }
 
