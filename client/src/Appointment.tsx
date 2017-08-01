@@ -6,7 +6,14 @@ export interface AppointmentProps extends IAppointment {
   onParticipantAdd: (name: string, eventId: string) => void
 }
 
-export class Appointment extends React.Component<AppointmentProps, object> {
+interface AppointmentState {
+  readonly participant: string
+}
+
+export class Appointment extends React.Component<AppointmentProps, AppointmentState> {
+  state = {
+    participant: ''
+  }
   form: HTMLFormElement | null = null
 
   addParticipant (event: React.FormEvent<HTMLFormElement>) {
@@ -15,6 +22,7 @@ export class Appointment extends React.Component<AppointmentProps, object> {
     const elements: HTMLFormControlsCollection = (this.form as HTMLFormElement).elements
     const participantElement: HTMLInputElement = elements.namedItem('participant') as HTMLInputElement
     this.props.onParticipantAdd(participantElement.value, this.props.id)
+    this.setState({participant: ''})
   }
 
   render () {
@@ -43,6 +51,8 @@ export class Appointment extends React.Component<AppointmentProps, object> {
               floatingLabelText='Teilnehmer'
               name='participant'
               required={true}
+              value={this.state.participant}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.setState({participant: event.target.value})}
             />
             <FlatButton
               type='submit'
