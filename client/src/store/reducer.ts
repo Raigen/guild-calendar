@@ -17,8 +17,13 @@ export function appointments (state: EventState, action: EventAction): EventStat
   switch (action.type) {
     case UPDATE_EVENT:
       const eventIndex = state.appointments.findIndex(event => event.id === action.payload.id)
-      state.appointments.splice(eventIndex, 1, action.payload)
-      return Object.assign({}, state)
+      const newAppointments = state.appointments
+        .filter((event, index) => index !== eventIndex)
+        .concat(action.payload)
+      return {
+        ...state,
+        appointments: newAppointments
+      }
     case LOAD_EVENTS:
       return Object.assign({}, state, {
         appointments: action.payload
