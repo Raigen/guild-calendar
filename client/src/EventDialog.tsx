@@ -1,9 +1,13 @@
 import * as React from 'react'
 
-import { Dialog, FlatButton, RaisedButton, TextField, TimePicker } from 'material-ui'
+import Dialog from 'material-ui/Dialog'
+import FlatButton from 'material-ui/FlatButton'
+import RaisedButton from 'material-ui/RaisedButton'
+import TextField from 'material-ui/TextField'
+import TimePicker from 'material-ui/TimePicker'
 
 interface EventDialogProps {
-  onCreateEvent: (title: string, creator: string, from: Date, to: Date) => void
+  onCreateEvent: (title: string, description: string, creator: string, from: Date, to: Date) => void
   selectedDate: Date
 }
 
@@ -31,10 +35,12 @@ export class EventDialog extends React.Component<EventDialogProps, EventDialogSt
     const dateTo = new Date(this.props.selectedDate.toDateString())
     const elements: HTMLFormControlsCollection = (this.form as HTMLFormElement).elements
     const titleElement: HTMLInputElement = elements.namedItem('title') as HTMLInputElement
+    const descriptionElement: HTMLInputElement = elements.namedItem('description') as HTMLInputElement
     const creatorElement: HTMLInputElement = elements.namedItem('creator') as HTMLInputElement
     const fromElement: HTMLInputElement = elements.namedItem('from') as HTMLInputElement
     const toElement: HTMLInputElement = elements.namedItem('to') as HTMLInputElement
     const title = titleElement.value
+    const description = descriptionElement.value
     const creator = creatorElement.value
 
     const fromHour = Number.parseInt(fromElement.value.substr(0, 2), 10)
@@ -47,7 +53,7 @@ export class EventDialog extends React.Component<EventDialogProps, EventDialogSt
     dateTo.setHours(toHour)
     dateTo.setMinutes(toMinute)
 
-    this.props.onCreateEvent(title, creator, dateFrom, dateTo)
+    this.props.onCreateEvent(title, description, creator, dateFrom, dateTo)
     this.closeHandler()
   }
 
@@ -70,14 +76,20 @@ export class EventDialog extends React.Component<EventDialogProps, EventDialogSt
         <form method='post' action='#' name='eventForm' ref={form => this.form = form}>
           <TextField
             floatingLabelText='Ersteller'
-            required={true}
+            required
             name='creator'
           />
           <br />
           <TextField
             floatingLabelText='Eventname'
             name='title'
-            required={true}
+            required
+          />
+          <br />
+          <TextField
+            floatingLabelText='Beschreibung'
+            name='description'
+            multiLine
           />
           <TimePicker
             name='from'

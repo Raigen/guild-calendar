@@ -26,6 +26,7 @@ export function getAppointments (): Promise<any[]> {
           return {
             id: key,
             title: app.title,
+            description: app.description || '',
             from: app.from,
             to: app.to,
             participants: app.participants
@@ -43,6 +44,7 @@ export function getAppointment (key: string): Promise<any> {
 
 export function setAppointment (
   title: string,
+  description: string = '',
   from: Date,
   to: Date,
   participants: string[],
@@ -50,7 +52,7 @@ export function setAppointment (
 ): Promise<any> {
   const key = id ? id : uuid.v4()
   return client.hmsetAsync('events', {
-    [key]: JSON.stringify({title, from, to, participants: participants})
+    [key]: JSON.stringify({title, description, from, to, participants: participants})
   })
   .then(() => getAppointment(key))
 }

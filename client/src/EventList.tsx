@@ -15,10 +15,11 @@ export interface EventListProps {
 }
 
 export class RawEventList extends React.Component<EventListProps, any> {
-  addEvent (title: string, creator: string, from: Date, to: Date) {
+  addEvent (title: string, description: string, creator: string, from: Date, to: Date) {
     const { dispatch } = this.props
     dispatch(addEventAsync({
       title,
+      description,
       from,
       to,
       participants: [creator]
@@ -47,6 +48,7 @@ export class RawEventList extends React.Component<EventListProps, any> {
             to={event.to}
             participants={event.participants}
             title={event.title}
+            description={event.description}
             onParticipantAdd={this.addParticipant.bind(this)}
           />
         ))}

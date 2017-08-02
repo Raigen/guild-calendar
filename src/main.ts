@@ -37,8 +37,8 @@ app.use(route.get('/api/appointments/:key', async (ctx, key: string) => {
 }))
 
 app.use(route.post('/api/appointments', async (ctx) => {
-  const {title, from, to, participants} = ctx.request.body
-  const appointment = await setAppointment(title, from, to, participants)
+  const {title, description, from, to, participants} = ctx.request.body
+  const appointment = await setAppointment(title, description, from, to, participants)
   ctx.body = JSON.stringify(appointment)
 }))
 
