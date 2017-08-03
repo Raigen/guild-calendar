@@ -17,7 +17,6 @@ declare interface RedisClient extends Redis.RedisClient {
   hmsetAsync (table: string, data: StringifiedAppointments): Promise<boolean>
 }
 
-
 const redisUrl: string = process.env['REDISCLOUD_URL'] || undefined
 const client = Redis.createClient(redisUrl) as RedisClient
 
