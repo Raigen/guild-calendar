@@ -2,6 +2,7 @@
   "name": "guild-calendar",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3001",
   "dependencies": {
     "@types/jest": "^20.0.4",
     "@types/material-ui": "^0.17.17",
