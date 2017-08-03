@@ -28,8 +28,8 @@ export function addEventAsync (event: INewAppointment) {
         'Content-Type': 'application/json'
       }
     })
-    .then(res => res.json())
-    .then(data => ({
+    .then<IAppointmentJSON>(res => res.json())
+    .then<IAppointment>(data => ({
       ...data,
       from: new Date(data.from),
       to: new Date(data.to)
@@ -74,13 +74,13 @@ export function loadEventsAsync () {
         'Accept': 'application/json'
       }
     })
-    .then(res => res.json())
-    .then((data: any[]) => data.map(app => ({
+    .then<IAppointmentJSON[]>(res => res.json())
+    .then<IAppointment[]>(data => data.map<IAppointment>(app => ({
       ...app,
       from: new Date(app.from),
       to: new Date(app.to)
     })))
-    .then((data: IAppointment[]) => dispatch(loadEvents(data)))
+    .then(data => dispatch(loadEvents(data)))
     .catch(error => {
       console.log(error)
     })
@@ -93,20 +93,18 @@ export type DeleteEventAction = {
   type: DELETE_EVENT,
   payload: string
 }
-
 export function deleteEvent (data: string): DeleteEventAction {
   return {
     type: DELETE_EVENT,
     payload: data
   }
 }
-
 export function deleteEventAsync (eventId: string) {
   return (dispatch: Dispatch) => {
     fetch(`${hostname}/api/appointments/${eventId}`, {
       method: 'delete',
       headers: {
-        'Accept': 'application/json',
+        'Accept': 'application/json'
       }
     })
     .then(res => res.json())
@@ -131,13 +129,13 @@ export function addParticipantAsync (participant: string, eventId: string) {
         'Content-Type': 'application/json'
       }
     })
-    .then(res => res.json())
-    .then((data: any) => ({
+    .then<IAppointmentJSON>(res => res.json())
+    .then<IAppointment>(data => ({
       ...data,
       from: new Date(data.from),
       to: new Date(data.to)
     }))
-    .then((data: IAppointment) => dispatch(updateEvent(data)))
+    .then(data => dispatch(updateEvent(data)))
     .catch(error => {
       console.log(error)
     })

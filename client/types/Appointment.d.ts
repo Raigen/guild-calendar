@@ -8,3 +8,12 @@ declare interface INewAppointment {
 declare interface IAppointment extends INewAppointment {
   id: string
 }
+
+declare interface IAppointmentJSON {
+  id: string,
+  title: string,
+  description: string,
+  from: string,
+  to: string,
+  participants: Array<string>
+}
