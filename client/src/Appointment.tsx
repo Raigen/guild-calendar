@@ -1,3 +1,5 @@
+import './Appointment.css'
+
 import * as React from 'react'
 
 import { Card, CardText, CardTitle, Chip, FlatButton, TextField } from 'material-ui'
@@ -26,12 +28,15 @@ export class Appointment extends React.Component<AppointmentProps, AppointmentSt
   }
 
   render () {
-    const {title, participants, from, to} = this.props
-    return <Card>
+    const {title, description, participants, from, to} = this.props
+    return <Card className='appointment'>
       <CardTitle
         title={title}
         subtitle={` am ${from.toLocaleDateString('de')} von ${from.toLocaleTimeString('de')} bis ${to.toLocaleTimeString('de')}`}
       />
+      <CardText className='description'>
+        {description}
+      </CardText>
       <CardText>
         <div style={{display: 'flex', flexWrap: 'wrap'}}>
         {participants.map(participant =>
