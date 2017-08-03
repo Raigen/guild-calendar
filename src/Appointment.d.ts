@@ -1,16 +1,15 @@
-declare interface INewAppointment {
+export interface INewAppointment {
   title: string,
   description: string,
   from: Date,
   to: Date,
   participants: ReadonlyArray<string>
 }
-declare interface IAppointment extends INewAppointment {
+export interface IAppointment extends INewAppointment {
   id: string
 }
 
-declare interface IAppointmentJSON {
-  id: string,
+export interface IAppointmentJSON {
   title: string,
   description: string,
   from: string,
