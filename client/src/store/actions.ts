@@ -3,9 +3,6 @@ import { Dispatch as ReduxDispatch } from 'redux'
 
 export type Dispatch = ReduxDispatch<EventState>
 
-// const hostname: string = 'http://localhost:3001'
-const hostname: string = ''
-
 export type ADD_EVENT = 'appointments/ADD_EVENT'
 export const ADD_EVENT: ADD_EVENT = 'appointments/ADD_EVENT'
 export type AddEventAction = {
@@ -20,7 +17,7 @@ export function addEvent (data: IAppointment): AddEventAction {
 }
 export function addEventAsync (event: INewAppointment) {
   return (dispatch: Dispatch) => {
-    fetch(`${hostname}/api/appointments`, {
+    fetch('/api/appointments', {
       method: 'post',
       body: JSON.stringify(event),
       headers: {
@@ -68,7 +65,7 @@ export function loadEvents (data: IAppointment[]): LoadEventAction {
 }
 export function loadEventsAsync () {
   return (dispatch: Dispatch) => {
-    fetch(`${hostname}/api/appointments`, {
+    fetch('/api/appointments', {
       method: 'get',
       headers: {
         'Accept': 'application/json'
@@ -101,7 +98,7 @@ export function deleteEvent (data: string): DeleteEventAction {
 }
 export function deleteEventAsync (eventId: string) {
   return (dispatch: Dispatch) => {
-    fetch(`${hostname}/api/appointments/${eventId}`, {
+    fetch(`/api/appointments/${eventId}`, {
       method: 'delete',
       headers: {
         'Accept': 'application/json'
@@ -121,7 +118,7 @@ export type AddParticipantAction = {
 }
 export function addParticipantAsync (participant: string, eventId: string) {
   return (dispatch: Dispatch) => {
-    fetch(`${hostname}/api/appointments/${eventId}/participant`, {
+    fetch(`/api/appointments/${eventId}/participant`, {
       method: 'post',
       body: JSON.stringify({participant}),
       headers: {
