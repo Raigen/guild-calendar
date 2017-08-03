@@ -2,7 +2,7 @@ import * as Bluebird from 'bluebird'
 import * as Redis from 'redis'
 import * as uuid from 'uuid'
 
-import { IAppointment, INewAppointment } from './Appointment.d'
+import { IAppointment, IAppointmentJSON } from './Appointment.d'
 
 Bluebird.promisifyAll(Redis.RedisClient.prototype)
 Bluebird.promisifyAll(Redis.Multi.prototype)
@@ -24,16 +24,16 @@ const client = Redis.createClient(redisUrl) as RedisClient
 export function getAppointments (): Promise<IAppointment[]> {
   return client
     .hgetallAsync('events')
-    .then(appointments =>
+    .then<IAppointment[]>(appointments =>
       appointments
         ? Object.keys(appointments).map(key => {
-          const app: INewAppointment = JSON.parse(appointments[key]) as INewAppointment
+          const app: IAppointmentJSON = JSON.parse(appointments[key])
           return {
             id: key,
             title: app.title,
             description: app.description || '',
-            from: app.from,
-            to: app.to,
+            from: new Date(app.from),
+            to: new Date(app.to),
             participants: app.participants
           }
         })
@@ -43,8 +43,13 @@ export function getAppointments (): Promise<IAppointment[]> {
 
 export function getAppointment (key: string): Promise<IAppointment> {
   return client.hgetAsync('events', key)
-    .then(raw => JSON.parse(raw) as INewAppointment)
-    .then(data => ({id: key, ...data}))
+    .then<IAppointmentJSON>(raw => JSON.parse(raw))
+    .then<IAppointment>(data => ({
+      id: key,
+      ...data,
+      from: new Date(data.from),
+      to: new Date(data.to)
+    }))
 }
 
 export function setAppointment (
@@ -59,5 +64,5 @@ export function setAppointment (
   return client.hmsetAsync('events', {
     [key]: JSON.stringify({title, description, from, to, participants: participants})
   })
-  .then(() => getAppointment(key))
+  .then<IAppointment>(() => getAppointment(key))
 }

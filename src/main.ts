@@ -4,8 +4,9 @@ import * as kcors from 'kcors'
 import * as route from 'koa-route'
 import * as serve from 'koa-static'
 
-import { IAppointment, INewAppointment } from './Appointment.d'
 import { getAppointment, getAppointments, setAppointment } from './db'
+
+import { INewAppointment } from './Appointment.d'
 
 const port = process.env.PORT || 3001
 const app = new Koa()
@@ -45,11 +46,11 @@ app.use(route.post('/api/appointments', async (ctx) => {
 
 app.use(route.post('/api/appointments/:key/participant', async (ctx, key: string) => {
   const { participant }: {participant: string} = ctx.request.body
-  const appointment: IAppointment = await getAppointment(key)
-  const newParticipants = appointment.participants.concat(participant)
+  const appointment = await getAppointment(key)
+  const newParticipants: ReadonlyArray<string> = appointment.participants.concat(participant)
   const { title, description, from, to, id} = appointment
-  const newAappointment: IAppointment = await setAppointment(title, description, from, to, newParticipants, id)
-  ctx.body = JSON.stringify(newAappointment)
+  const newAppointment = await setAppointment(title, description, from, to, newParticipants, id)
+  ctx.body = JSON.stringify(newAppointment)
 }))
 
 app.use(serve('./client/build/', {
