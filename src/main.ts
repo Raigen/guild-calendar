@@ -1,5 +1,6 @@
 import * as Koa from 'koa'
 import * as bodyParser from 'koa-bodyparser'
+import * as bunyan from 'bunyan'
 import * as kcors from 'kcors'
 import * as route from 'koa-route'
 import * as serve from 'koa-static'
@@ -8,17 +9,34 @@ import { getAppointment, getAppointments, setAppointment } from './db'
 
 import { INewAppointment } from './Appointment.d'
 
+declare module 'koa' {
+  interface Context {
+    logger: bunyan
+  }
+}
+
 const port = process.env.PORT || 3001
 const app = new Koa()
+const mainLogger = bunyan.createLogger({
+  name: 'calendar'
+})
 
 app.use(kcors())
 app.use(bodyParser())
 
 app.use(async (ctx, next) => {
+  ctx.logger = mainLogger
+  await next()
+})
+app.use(async (ctx, next) => {
   const start = Date.now()
   await next()
   const ms = Date.now() - start
-  console.log(`${ctx.method} ${ctx.url} - ${ms}ms`)
+  ctx.logger.info({
+    method: ctx.method,
+    url: ctx.url,
+    duration: ms
+  }, `${ctx.method} ${ctx.url} - ${ms}ms`)
 })
 
 app.use(async (ctx, next) => {
@@ -57,6 +75,10 @@ app.use(serve('./client/build/', {
   index: 'index.html'
 }))
 
+app.on('error', (error: Error) => {
+  mainLogger.error(error)
+})
+
 app.listen(port, () => {
-  console.log(`koa ist listening on http://localhost:${port}`)
+  mainLogger.info(`koa ist listening on http://localhost:${port}`)
 })
