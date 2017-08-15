@@ -90,10 +90,10 @@ export type DeleteEventAction = {
   type: DELETE_EVENT,
   payload: string
 }
-export function deleteEvent (data: string): DeleteEventAction {
+export function deleteEvent (eventId: string): DeleteEventAction {
   return {
     type: DELETE_EVENT,
-    payload: data
+    payload: eventId
   }
 }
 export function deleteEventAsync (eventId: string) {

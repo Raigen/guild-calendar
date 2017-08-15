@@ -4,8 +4,11 @@ import * as React from 'react'
 
 import { Card, CardText, CardTitle, Chip, FlatButton, TextField } from 'material-ui'
 
+import CardActions from 'material-ui/Card/CardActions'
+
 export interface AppointmentProps extends IAppointment {
   onParticipantAdd: (name: string, eventId: string) => void
+  onEventDelete: (eventId: string) => void
 }
 
 interface AppointmentState {
@@ -27,8 +30,12 @@ export class Appointment extends React.Component<AppointmentProps, AppointmentSt
     this.setState({participant: ''})
   }
 
+  deleteEvent (eventId: string) {
+    this.props.onEventDelete(eventId)
+  }
+
   render () {
-    const {title, description, participants, from, to} = this.props
+    const {title, description, participants, from, to, id} = this.props
     return <Card className='appointment'>
       <CardTitle
         title={title}
@@ -66,6 +73,12 @@ export class Appointment extends React.Component<AppointmentProps, AppointmentSt
           </form>
         </div>
       </CardText>
+      <CardActions>
+        <FlatButton
+          label='löschen'
+          onClick={() => this.deleteEvent(id)}
+        />
+      </CardActions>
     </Card>
   }
 }
