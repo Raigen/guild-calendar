@@ -151,3 +151,16 @@ export function selectDate (date: Date): SelectDateAction {
     payload: date
   }
 }
+
+export type SET_ADMIN = 'admin/SET_ADMIN'
+export const SET_ADMIN: SET_ADMIN = 'admin/SET_ADMIN'
+export type SetAdminAction = {
+  type: SET_ADMIN,
+  payload: boolean
+}
+export function setAdmin (active: boolean): SetAdminAction {
+  return {
+    type: SET_ADMIN,
+    payload: active
+  }
+}

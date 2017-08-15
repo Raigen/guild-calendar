@@ -11,6 +11,7 @@ import { EventState } from './store/index'
 export interface EventListProps {
   appointments: IAppointment[],
   selectedDate: Date,
+  isAdmin: boolean,
   dispatch: Dispatch<AddEventAction | AddParticipantAction | DeleteEventAction>
 }
 
@@ -45,7 +46,7 @@ export class RawEventList extends React.Component<EventListProps, any> {
   }
 
   render () {
-    const { appointments, selectedDate } = this.props
+    const { appointments, selectedDate, isAdmin } = this.props
     const events = appointments
       .filter(event => event.from.getDate() === selectedDate.getDate())
       .sort(sortByDateTime)
@@ -66,6 +67,7 @@ export class RawEventList extends React.Component<EventListProps, any> {
             description={event.description}
             onParticipantAdd={this.addParticipant.bind(this)}
             onEventDelete={this.deleteEvent.bind(this)}
+            isAdmin={isAdmin}
           />
         ))}
       </ul>
@@ -75,5 +77,6 @@ export class RawEventList extends React.Component<EventListProps, any> {
 
 export const EventList = connect((rootState: EventState) => ({
   appointments: rootState.appointments,
-  selectedDate: rootState.selectedDate
+  selectedDate: rootState.selectedDate,
+  isAdmin: rootState.isAdmin
 }))(RawEventList)

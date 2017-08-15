@@ -2,23 +2,29 @@ import './App.css'
 
 import * as React from 'react'
 
+import { loadEventsAsync, setAdmin } from './store/actions'
+
 import { Calendar } from './Calendar'
 import { EventList } from './EventList'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import { Provider } from 'react-redux'
 import { appointments } from './store/reducer'
 import { createStore } from './store'
-import { loadEventsAsync } from './store/actions'
 
 const logo = require('./logo.svg')
 
 const initialState = {
   appointments: [],
-  selectedDate: new Date()
+  selectedDate: new Date(),
+  isAdmin: false
 }
 
 const store = createStore(appointments, initialState)
 store.dispatch(loadEventsAsync())
+const urlSearchParams = new URLSearchParams(document.location.search)
+if (urlSearchParams.has('admin') && urlSearchParams.get('admin') === 'DEG') {
+  store.dispatch(setAdmin(true))
+}
 
 class App extends React.Component<any, any> {
   render () {

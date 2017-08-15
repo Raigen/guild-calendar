@@ -9,6 +9,7 @@ import CardActions from 'material-ui/Card/CardActions'
 export interface AppointmentProps extends IAppointment {
   onParticipantAdd: (name: string, eventId: string) => void
   onEventDelete: (eventId: string) => void
+  isAdmin: boolean
 }
 
 interface AppointmentState {
@@ -36,6 +37,7 @@ export class Appointment extends React.Component<AppointmentProps, AppointmentSt
 
   render () {
     const {title, description, participants, from, to, id} = this.props
+    const isAdmin = this.props.isAdmin
     return <Card className='appointment'>
       <CardTitle
         title={title}
@@ -73,12 +75,12 @@ export class Appointment extends React.Component<AppointmentProps, AppointmentSt
           </form>
         </div>
       </CardText>
-      <CardActions>
+      {isAdmin && <CardActions>
         <FlatButton
           label='löschen'
           onClick={() => this.deleteEvent(id)}
         />
-      </CardActions>
+      </CardActions>}
     </Card>
   }
 }
