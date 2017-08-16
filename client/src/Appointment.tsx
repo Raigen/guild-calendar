@@ -2,9 +2,13 @@ import './Appointment.css'
 
 import * as React from 'react'
 
-import { Card, CardText, CardTitle, Chip, FlatButton, TextField } from 'material-ui'
-
+import Card from 'material-ui/Card'
 import CardActions from 'material-ui/Card/CardActions'
+import CardText from 'material-ui/Card/CardText'
+import CardTitle from 'material-ui/Card/CardTitle'
+import Chip from 'material-ui/Chip'
+import FlatButton from 'material-ui/FlatButton'
+import TextField from 'material-ui/TextField'
 
 export interface AppointmentProps extends IAppointment {
   onParticipantAdd: (name: string, eventId: string) => void
