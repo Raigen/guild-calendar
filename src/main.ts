@@ -5,7 +5,7 @@ import * as kcors from 'kcors'
 import * as route from 'koa-route'
 import * as serve from 'koa-static'
 
-import { getAppointment, getAppointments, setAppointment } from './db'
+import { deleteAppointment, getAppointment, getAppointments, setAppointment } from './db'
 
 import { INewAppointment } from './Appointment.d'
 
@@ -54,6 +54,10 @@ app.use(route.get('/api/appointments', async (ctx) => {
 app.use(route.get('/api/appointments/:key', async (ctx, key: string) => {
   const appointment = await getAppointment(key)
   ctx.body = JSON.stringify(appointment)
+}))
+app.use(route.del('/api/appointments/:key', async (ctx, key: string) => {
+  const affectedRows = await deleteAppointment(key)
+  ctx.body = JSON.stringify({affectedRows})
 }))
 
 app.use(route.post('/api/appointments', async (ctx) => {

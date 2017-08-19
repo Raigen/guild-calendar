@@ -90,10 +90,10 @@ export type DeleteEventAction = {
   type: DELETE_EVENT,
   payload: string
 }
-export function deleteEvent (data: string): DeleteEventAction {
+export function deleteEvent (eventId: string): DeleteEventAction {
   return {
     type: DELETE_EVENT,
-    payload: data
+    payload: eventId
   }
 }
 export function deleteEventAsync (eventId: string) {
@@ -149,5 +149,18 @@ export function selectDate (date: Date): SelectDateAction {
   return {
     type: SELECT_DATE,
     payload: date
+  }
+}
+
+export type SET_ADMIN = 'admin/SET_ADMIN'
+export const SET_ADMIN: SET_ADMIN = 'admin/SET_ADMIN'
+export type SetAdminAction = {
+  type: SET_ADMIN,
+  payload: boolean
+}
+export function setAdmin (active: boolean): SetAdminAction {
+  return {
+    type: SET_ADMIN,
+    payload: active
   }
 }

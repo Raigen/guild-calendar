@@ -7,6 +7,7 @@ import thunk from 'redux-thunk'
 export interface EventState {
   readonly appointments: ReadonlyArray<IAppointment>
   readonly selectedDate: Date | undefined
+  readonly isAdmin: boolean
 }
 
 export function createStore (reducer: redux.Reducer<EventState>, initialState: EventState): redux.Store<EventState> {

@@ -15,6 +15,7 @@ declare interface RedisClient extends Redis.RedisClient {
   hgetallAsync (table: string): Promise<StringifiedAppointments | null>
   hgetAsync (table: string, key: string): Promise<string>
   hmsetAsync (table: string, data: StringifiedAppointments): Promise<boolean>
+  hdelAsync (table: string, key: string): Promise<number>
 }
 
 const redisUrl: string = process.env['REDISCLOUD_URL'] || undefined
@@ -49,6 +50,10 @@ export function getAppointment (key: string): Promise<IAppointment> {
       from: new Date(data.from),
       to: new Date(data.to)
     }))
+}
+
+export function deleteAppointment (key: string): Promise<number> {
+  return client.hdelAsync('events', key)
 }
 
 export function setAppointment (

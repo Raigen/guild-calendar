@@ -1,17 +1,21 @@
 import {
   ADD_EVENT,
   AddEventAction,
+  DELETE_EVENT,
+  DeleteEventAction,
   LOAD_EVENTS,
   LoadEventAction,
   SELECT_DATE,
+  SET_ADMIN,
   SelectDateAction,
+  SetAdminAction,
   UPDATE_EVENT,
   UpdateEventAction
 } from './actions'
 
 import { EventState } from './index'
 
-type EventAction = AddEventAction | LoadEventAction | SelectDateAction | UpdateEventAction
+type EventAction = AddEventAction | LoadEventAction | SelectDateAction | UpdateEventAction | DeleteEventAction | SetAdminAction
 
 export function appointments (state: EventState, action: EventAction): EventState {
   switch (action.type) {
@@ -32,15 +36,21 @@ export function appointments (state: EventState, action: EventAction): EventStat
       return Object.assign({}, state, {
         appointments: state.appointments.concat([action.payload])
       })
-    // case 'REMOVE_EVENT':
-    //   return Object.assign({}, state, {
-    //     appointments: state.appointments.splice(state.appointments.indexOf(action.payload), 1)
-    //   })
+    case DELETE_EVENT:
+      return {
+        ...state,
+        appointments: state.appointments.filter(app => app.id !== action.payload)
+      }
 
     case SELECT_DATE:
       return Object.assign({}, state, {
         selectedDate: action.payload
       })
+    case SET_ADMIN:
+      return {
+        ...state,
+        isAdmin: action.payload
+      }
     default:
       return state
   }
