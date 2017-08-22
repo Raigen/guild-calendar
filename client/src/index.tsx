@@ -1,6 +1,7 @@
 const initOpbeat = require('opbeat-react').default
 
 import './index.css'
+import 'url-search-params-polyfill'
 
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
