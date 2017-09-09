@@ -53,8 +53,12 @@ export class RawEventList extends React.Component<EventListProps, any> {
   render () {
     const { appointments, selectedDate, isAdmin } = this.props
     const events = appointments
+      // first only get all events from the selected month
+      .filter(event => event.from.getMonth() === selectedDate.getMonth())
+      // second only get all events from the selected day
       .filter(event => event.from.getDate() === selectedDate.getDate())
       .sort(sortByDateTime)
+
     return <div className='EventList'>
       <EventDialog
         onCreateEvent={this.addEvent.bind(this)}
