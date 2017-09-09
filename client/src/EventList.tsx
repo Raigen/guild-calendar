@@ -1,8 +1,8 @@
 import * as React from 'react'
 
-import { AddEventAction, AddParticipantAction, DeleteEventAction } from './store/actions'
+import { AddEventAction, AddParticipantAction, DeleteEventAction, DeleteParticipantAction } from './store/actions'
 import { Dispatch, connect } from 'react-redux'
-import { addEventAsync, addParticipantAsync, deleteEventAsync } from './store/actions'
+import { addEventAsync, addParticipantAsync, deleteEventAsync, deleteParticipantAsync } from './store/actions'
 
 import { Appointment } from './Appointment'
 import { EventDialog } from './EventDialog'
@@ -12,7 +12,7 @@ export interface EventListProps {
   appointments: IAppointment[],
   selectedDate: Date,
   isAdmin: boolean,
-  dispatch: Dispatch<AddEventAction | AddParticipantAction | DeleteEventAction>
+  dispatch: Dispatch<AddEventAction | AddParticipantAction | DeleteEventAction | DeleteParticipantAction>
 }
 
 function sortByDateTime (a: IAppointment, b: IAppointment) {
@@ -38,6 +38,11 @@ export class RawEventList extends React.Component<EventListProps, any> {
   addParticipant (name: string, eventId: string) {
     const { dispatch } = this.props
     dispatch(addParticipantAsync(name, eventId))
+  }
+
+  deleteParticipant (name: string, eventId: string) {
+    const { dispatch } = this.props
+    dispatch(deleteParticipantAsync(name, eventId))
   }
 
   deleteEvent (eventId: string) {
@@ -66,6 +71,7 @@ export class RawEventList extends React.Component<EventListProps, any> {
             title={event.title}
             description={event.description}
             onParticipantAdd={this.addParticipant.bind(this)}
+            onParticipantDelete={this.deleteParticipant.bind(this)}
             onEventDelete={this.deleteEvent.bind(this)}
             isAdmin={isAdmin}
           />

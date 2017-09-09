@@ -12,6 +12,7 @@ import TextField from 'material-ui/TextField'
 
 export interface AppointmentProps extends IAppointment {
   onParticipantAdd: (name: string, eventId: string) => void
+  onParticipantDelete: (name: string, eventId: string) => void
   onEventDelete: (eventId: string) => void
   isAdmin: boolean
 }
@@ -35,6 +36,10 @@ export class Appointment extends React.Component<AppointmentProps, AppointmentSt
     this.setState({participant: ''})
   }
 
+  deleteParticipant (participant: string, eventId: string) {
+    this.props.onParticipantDelete(participant, eventId)
+  }
+
   deleteEvent (eventId: string) {
     this.props.onEventDelete(eventId)
   }
@@ -42,6 +47,10 @@ export class Appointment extends React.Component<AppointmentProps, AppointmentSt
   render () {
     const {title, description, participants, from, to, id} = this.props
     const isAdmin = this.props.isAdmin
+    const getOnRequestDeleteHandler: Function | null = (participant: string) => {
+      if (!isAdmin) return null
+      return () => this.deleteParticipant(participant, id)
+    }
     return <Card className='appointment'>
       <CardTitle
         title={title}
@@ -53,7 +62,12 @@ export class Appointment extends React.Component<AppointmentProps, AppointmentSt
       <CardText>
         <div style={{display: 'flex', flexWrap: 'wrap'}}>
         {participants.map(participant =>
-          <Chip key={participant}>{participant}</Chip>
+          <Chip
+            key={participant}
+            onRequestDelete={getOnRequestDeleteHandler(participant)}
+          >
+            {participant}
+          </Chip>
         )}
         </div>
         <div>

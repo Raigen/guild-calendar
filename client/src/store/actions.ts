@@ -139,6 +139,35 @@ export function addParticipantAsync (participant: string, eventId: string) {
   }
 }
 
+export type DELETE_PARTICIPANT = 'appointments/DELETE_PARTICIPANT'
+export const DELETE_PARTICIPANT: DELETE_PARTICIPANT = 'appointments/DELETE_PARTICIPANT'
+export type DeleteParticipantAction = {
+  type: DELETE_PARTICIPANT,
+  payload: string
+}
+export function deleteParticipantAsync (participant: string, eventId: string) {
+  return (dispatch: Dispatch) => {
+    fetch(`/api/appointments/${eventId}/participant/${encodeURIComponent(participant)}`, {
+      method: 'delete',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+
+    .then<IAppointmentJSON>(res => res.json())
+    .then<IAppointment>(data => ({
+      ...data,
+      from: new Date(data.from),
+      to: new Date(data.to)
+    }))
+    .then(data => dispatch(updateEvent(data)))
+    .catch(error => {
+      console.log(error)
+    })
+  }
+}
+
 export type SELECT_DATE = 'calendar/SELECT_DATE'
 export const SELECT_DATE: SELECT_DATE = 'calendar/SELECT_DATE'
 export type SelectDateAction = {
