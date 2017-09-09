@@ -4,9 +4,9 @@
   "private": true,
   "proxy": "http://localhost:3001",
   "dependencies": {
-    "@types/jest": "20.0.4",
+    "@types/jest": "20.0.8",
     "@types/material-ui": "0.17.17",
-    "@types/node": "8.0.14",
+    "@types/node": "8.0.28",
     "@types/react": "15.0.38",
     "@types/react-big-calendar": "0.14.0",
     "@types/react-dom": "15.5.1",
