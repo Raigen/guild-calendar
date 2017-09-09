@@ -147,7 +147,7 @@ export type DeleteParticipantAction = {
 }
 export function deleteParticipantAsync (participant: string, eventId: string) {
   return (dispatch: Dispatch) => {
-    fetch(`/api/appointments/${eventId}/participant/${participant}`, {
+    fetch(`/api/appointments/${eventId}/participant/${encodeURIComponent(participant)}`, {
       method: 'delete',
       headers: {
         'Accept': 'application/json',
