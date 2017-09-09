@@ -47,6 +47,10 @@ export class Appointment extends React.Component<AppointmentProps, AppointmentSt
   render () {
     const {title, description, participants, from, to, id} = this.props
     const isAdmin = this.props.isAdmin
+    const getOnRequestDeleteHandler: Function | null = (participant: string) => {
+      if (!isAdmin) return null
+      return () => this.deleteParticipant(participant, id)
+    }
     return <Card className='appointment'>
       <CardTitle
         title={title}
@@ -60,7 +64,7 @@ export class Appointment extends React.Component<AppointmentProps, AppointmentSt
         {participants.map(participant =>
           <Chip
             key={participant}
-            onRequestDelete={() => this.deleteParticipant(participant, id)}
+            onRequestDelete={getOnRequestDeleteHandler(participant)}
           >
             {participant}
           </Chip>
