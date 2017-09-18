@@ -59,14 +59,14 @@ export class EventDialog extends React.Component<EventDialogProps, EventDialogSt
 
   render () {
     const actions = [
-      <FlatButton label='Speichern' onTouchTap={this.saveNewEvent.bind(this)} />,
-      <FlatButton label='Abbrechen' onTouchTap={this.closeHandler.bind(this)} />
+      <FlatButton label='Speichern' onClick={this.saveNewEvent.bind(this)} />,
+      <FlatButton label='Abbrechen' onClick={this.closeHandler.bind(this)} />
     ]
     return <div className='EventDialog'>
       <h2>{this.props.selectedDate.toLocaleDateString('de')}</h2>
       <RaisedButton
         label='Neues Event'
-        onTouchTap={this.openHandler.bind(this)}
+        onClick={this.openHandler.bind(this)}
        />
       <Dialog
         title={`Neues Event am ${this.props.selectedDate.toLocaleDateString('de')}`}

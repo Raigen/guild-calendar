@@ -5,7 +5,6 @@ import 'url-search-params-polyfill'
 
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import * as injectTapEventPlugin from 'react-tap-event-plugin'
 
 import App from './App'
 import registerServiceWorker from './registerServiceWorker'
@@ -16,8 +15,6 @@ if (process.env.NODE_ENV === 'production') {
     appId: '64918ad09b'
   })
 }
-
-injectTapEventPlugin()
 
 ReactDOM.render(
   <App />,
