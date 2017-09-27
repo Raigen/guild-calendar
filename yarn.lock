@@ -27,9 +27,9 @@
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@types/http-assert/-/http-assert-1.2.0.tgz#0b82993036e86c6ff2944e033b73b57e85ccdcab"
 
-"@types/jest@~20.0.2":
-  version "20.0.4"
-  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-20.0.4.tgz#91e2c76fbe90b3a719b5d689958f0495f005beb9"
+"@types/jest@~21.1.1":
+  version "21.1.1"
+  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-21.1.1.tgz#70008ecce439774a45c7d0b543d879ec58a1b332"
 
 "@types/keygrip@*":
   version "1.0.1"
@@ -1542,7 +1542,7 @@ jest-validate@^21.2.0:
     leven "^2.1.0"
     pretty-format "^21.2.0"
 
-jest@21.2.0:
+jest@~21.2.0:
   version "21.2.0"
   resolved "https://registry.yarnpkg.com/jest/-/jest-21.2.0.tgz#d0a6171e4e36e95acb28175d8b191241872bb59a"
   dependencies:
