@@ -52,11 +52,18 @@
     "@types/koa" "*"
     path-to-regexp "^1.7.0"
 
-"@types/koa-static@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@types/koa-static/-/koa-static-3.0.0.tgz#2e1b1d05941ba4cf6e46237c3007fd654421e01f"
+"@types/koa-send@*":
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/@types/koa-send/-/koa-send-4.1.1.tgz#88f57cbe0343c8204903f9096d8ff6b98ec3296f"
   dependencies:
     "@types/koa" "*"
+
+"@types/koa-static@4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@types/koa-static/-/koa-static-4.0.0.tgz#4cddce6adf45221bacfb2842b3621dc92f4d642c"
+  dependencies:
+    "@types/koa" "*"
+    "@types/koa-send" "*"
 
 "@types/koa@*", "@types/koa@^2.0.39":
   version "2.0.39"
@@ -2742,9 +2749,9 @@ type-is@^1.5.5, type-is@^1.6.14:
     media-typer "0.3.0"
     mime-types "~2.1.15"
 
-typescript@2.6.1:
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.6.1.tgz#ef39cdea27abac0b500242d6726ab90e0c846631"
+typescript@~2.6.1:
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.6.2.tgz#3c5b6fd7f6de0914269027f03c0946758f7673a4"
 
 uglify-js@^2.6:
   version "2.8.29"
