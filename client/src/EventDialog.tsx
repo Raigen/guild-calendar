@@ -23,11 +23,11 @@ export class EventDialog extends React.Component<EventDialogProps, EventDialogSt
   form: HTMLFormElement | null = null
 
   openHandler () {
-    this.setState({open: true})
+    this.setState({ open: true })
   }
 
   closeHandler () {
-    this.setState({open: false})
+    this.setState({ open: false })
   }
 
   saveNewEvent () {

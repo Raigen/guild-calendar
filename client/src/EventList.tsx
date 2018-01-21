@@ -1,8 +1,7 @@
 import * as React from 'react'
 
-import { AddEventAction, AddParticipantAction, DeleteEventAction, DeleteParticipantAction } from './store/actions'
+import { AddEventAction, AddParticipantAction, DeleteEventAction, DeleteParticipantAction, addEventAsync, addParticipantAsync, deleteEventAsync, deleteParticipantAsync } from './store/actions'
 import { Dispatch, connect } from 'react-redux'
-import { addEventAsync, addParticipantAsync, deleteEventAsync, deleteParticipantAsync } from './store/actions'
 
 import { Appointment } from './Appointment'
 import { EventDialog } from './EventDialog'

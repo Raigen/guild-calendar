@@ -33,7 +33,7 @@ export class Appointment extends React.Component<AppointmentProps, AppointmentSt
     const elements: HTMLFormControlsCollection = (this.form as HTMLFormElement).elements
     const participantElement: HTMLInputElement = elements.namedItem('participant') as HTMLInputElement
     this.props.onParticipantAdd(participantElement.value, this.props.id)
-    this.setState({participant: ''})
+    this.setState({ participant: '' })
   }
 
   deleteParticipant (participant: string, eventId: string) {
@@ -45,7 +45,7 @@ export class Appointment extends React.Component<AppointmentProps, AppointmentSt
   }
 
   render () {
-    const {title, description, participants, from, to, id} = this.props
+    const { title, description, participants, from, to, id } = this.props
     const isAdmin = this.props.isAdmin
     const getOnRequestDeleteHandler: Function | null = (participant: string) => {
       if (!isAdmin) return null
@@ -60,7 +60,7 @@ export class Appointment extends React.Component<AppointmentProps, AppointmentSt
         {description}
       </CardText>
       <CardText>
-        <div style={{display: 'flex', flexWrap: 'wrap'}}>
+        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
         {participants.map(participant =>
           <Chip
             key={participant}
@@ -84,7 +84,7 @@ export class Appointment extends React.Component<AppointmentProps, AppointmentSt
               name='participant'
               required={true}
               value={this.state.participant}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.setState({participant: event.target.value})}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.setState({ participant: event.target.value })}
             />
             <FlatButton
               type='submit'
