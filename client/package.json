@@ -4,7 +4,8 @@
   "private": true,
   "proxy": "http://localhost:3001",
   "dependencies": {
-    "material-ui": "0.20.0",
+    "material-ui": "^1.0.0-beta.41",
+    "material-ui-time-picker": "^0.1.6",
     "moment": "2.22.0",
     "opbeat-react": "3.4.0",
     "react": "16.3.1",
@@ -18,7 +19,6 @@
   },
   "devDependencies": {
     "@types/jest": "22.2.2",
-    "@types/material-ui": "0.21.1",
     "@types/node": "9.6.2",
     "@types/react": "16.3.5",
     "@types/react-big-calendar": "0.18.0",

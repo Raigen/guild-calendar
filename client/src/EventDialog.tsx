@@ -1,10 +1,11 @@
 import * as React from 'react'
 
-import Dialog from 'material-ui/Dialog'
-import FlatButton from 'material-ui/FlatButton'
-import RaisedButton from 'material-ui/RaisedButton'
+import Dialog, { DialogActions, DialogContent, DialogTitle } from 'material-ui/Dialog'
+
+import Button from 'material-ui/Button'
 import TextField from 'material-ui/TextField'
-import TimePicker from 'material-ui/TimePicker'
+// import TimePicker from 'material-ui/TimePicker'
+import { TimePicker } from 'material-ui-time-picker'
 
 interface EventDialogProps {
   onCreateEvent: (title: string, description: string, creator: string, from: Date, to: Date) => void
@@ -58,52 +59,54 @@ export class EventDialog extends React.Component<EventDialogProps, EventDialogSt
   }
 
   render () {
-    const actions = [
-      <FlatButton label='Speichern' onClick={this.saveNewEvent.bind(this)} />,
-      <FlatButton label='Abbrechen' onClick={this.closeHandler.bind(this)} />
-    ]
     return <div className='EventDialog'>
       <h2>{this.props.selectedDate.toLocaleDateString('de')}</h2>
-      <RaisedButton
-        label='Neues Event'
+      <Button
+        raised
         onClick={this.openHandler.bind(this)}
-       />
+       >Neues Event</Button>
       <Dialog
-        title={`Neues Event am ${this.props.selectedDate.toLocaleDateString('de')}`}
         open={this.state.open}
-        actions={actions}
+        onClose={this.closeHandler.bind(this)}
       >
-        <form method='post' action='#' name='eventForm' ref={form => this.form = form}>
-          <TextField
-            floatingLabelText='Ersteller'
-            required
-            name='creator'
-          />
-          <br />
-          <TextField
-            floatingLabelText='Eventname'
-            name='title'
-            required
-          />
-          <br />
-          <TextField
-            floatingLabelText='Beschreibung'
-            name='description'
-            multiLine
-          />
-          <TimePicker
-            name='from'
-            hintText='Von'
-            minutesStep={5}
-            format='24hr'
-          />
-          <TimePicker
-            name='to'
-            hintText='Bis'
-            minutesStep={5}
-            format='24hr'
-          />
-        </form>
+        <DialogTitle>{`Neues Event am ${this.props.selectedDate.toLocaleDateString('de')}`}</DialogTitle>
+        <DialogContent>
+          <form method='post' action='#' name='eventForm' ref={form => this.form = form}>
+            <TextField
+              label='Ersteller'
+              required
+              name='creator'
+            />
+            <br />
+            <TextField
+              label='Eventname'
+              name='title'
+              required
+            />
+            <br />
+            <TextField
+              label='Beschreibung'
+              name='description'
+              multiline
+            />
+            <TimePicker
+              name='from'
+              hintText='Von'
+              minutesStep={5}
+              mode='24h'
+            />
+            <TimePicker
+              name='to'
+              hintText='Bis'
+              minutesStep={5}
+              mode='24h'
+            />
+          </form>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={this.saveNewEvent.bind(this)} >Speichern</Button>
+          <Button onClick={this.closeHandler.bind(this)} >Abbrechen</Button>
+        </DialogActions>
       </Dialog>
     </div>
   }

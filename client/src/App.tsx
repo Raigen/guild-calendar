@@ -2,16 +2,20 @@ import './App.css'
 
 import * as React from 'react'
 
-import { loadEventsAsync, setAdmin } from './store/actions'
+import {
+loadEventsAsync,
+setAdmin
+} from './store/actions'
 
 import { Calendar } from './Calendar'
 import { EventList } from './EventList'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import { Provider } from 'react-redux'
 import { appointments } from './store/reducer'
 import { createStore } from './store'
 
 const logo = require('./logo.svg')
+
+// const theme = createMuiTheme()
 
 const initialState = {
   appointments: [],
@@ -29,7 +33,6 @@ if (urlSearchParams.has('admin') && urlSearchParams.get('admin') === 'DEG') {
 class App extends React.Component<any, any> {
   render () {
     return (
-      <MuiThemeProvider>
         <Provider store={store}>
           <div className='App'>
             <div className='App-header'>
@@ -40,7 +43,6 @@ class App extends React.Component<any, any> {
             <EventList />
           </div>
         </Provider>
-      </MuiThemeProvider>
     )
   }
 }

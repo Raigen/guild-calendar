@@ -2,13 +2,12 @@ import './Appointment.css'
 
 import * as React from 'react'
 
-import Card from 'material-ui/Card'
-import CardActions from 'material-ui/Card/CardActions'
-import CardText from 'material-ui/Card/CardText'
-import CardTitle from 'material-ui/Card/CardTitle'
+import Card, { CardActions, CardContent, CardHeader } from 'material-ui/Card'
+
+import Button from 'material-ui/Button'
 import Chip from 'material-ui/Chip'
-import FlatButton from 'material-ui/FlatButton'
 import TextField from 'material-ui/TextField'
+import Typography from 'material-ui/Typography'
 
 export interface AppointmentProps extends IAppointment {
   onParticipantAdd: (name: string, eventId: string) => void
@@ -52,52 +51,51 @@ export class Appointment extends React.Component<AppointmentProps, AppointmentSt
       return () => this.deleteParticipant(participant, id)
     }
     return <Card className='appointment'>
-      <CardTitle
+      <CardHeader
         title={title}
-        subtitle={` am ${from.toLocaleDateString('de')} von ${from.toLocaleTimeString('de')} bis ${to.toLocaleTimeString('de')}`}
+        subheader={` am ${from.toLocaleDateString('de')} von ${from.toLocaleTimeString('de')} bis ${to.toLocaleTimeString('de')}`}
       />
-      <CardText className='description'>
-        {description}
-      </CardText>
-      <CardText>
-        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-        {participants.map(participant =>
-          <Chip
-            key={participant}
-            onRequestDelete={getOnRequestDeleteHandler(participant)}
-          >
-            {participant}
-          </Chip>
-        )}
-        </div>
-        <div>
-          <form
-            method='post'
-            action='#'
-            name='newParticipant'
-            ref={form => this.form = form}
-            onSubmit={this.addParticipant.bind(this)}
-          >
-            <TextField
-              type='text'
-              floatingLabelText='Teilnehmer'
-              name='participant'
-              required={true}
-              value={this.state.participant}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.setState({ participant: event.target.value })}
+      <CardContent>
+        <Typography className='description' component='p'>
+          {description}
+        </Typography>
+        <Typography component='div'>
+          <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+          {participants.map(participant =>
+            <Chip
+              key={participant}
+              label={participant}
+              onDelete={getOnRequestDeleteHandler(participant)}
             />
-            <FlatButton
-              type='submit'
-              label='eintragen'
-            />
-          </form>
-        </div>
-      </CardText>
+          )}
+          </div>
+          <div>
+            <form
+              method='post'
+              action='#'
+              name='newParticipant'
+              ref={form => this.form = form}
+              onSubmit={this.addParticipant.bind(this)}
+            >
+              <TextField
+                type='text'
+                label='Teilnehmer'
+                name='participant'
+                required={true}
+                value={this.state.participant}
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) => this.setState({ participant: event.target.value })}
+              />
+              <Button
+                type='submit'
+              >eintragen</Button>
+            </form>
+          </div>
+        </Typography>
+      </CardContent>
       {isAdmin && <CardActions>
-        <FlatButton
-          label='löschen'
+        <Button
           onClick={() => this.deleteEvent(id)}
-        />
+        >loeschen</Button>
       </CardActions>}
     </Card>
   }
