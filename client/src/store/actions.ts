@@ -120,7 +120,7 @@ export function addParticipantAsync (participant: string, eventId: string) {
   return (dispatch: Dispatch) => {
     fetch(`/api/appointments/${eventId}/participant`, {
       method: 'post',
-      body: JSON.stringify({participant}),
+      body: JSON.stringify({ participant }),
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
