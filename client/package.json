@@ -5,17 +5,17 @@
   "proxy": "http://localhost:3001",
   "dependencies": {
     "@types/jest": "20.0.8",
-    "@types/material-ui": "0.18.0",
+    "@types/material-ui": "0.20.4",
     "@types/node": "8.0.28",
     "@types/react": "15.0.38",
-    "@types/react-big-calendar": "0.14.0",
+    "@types/react-big-calendar": "0.17.0",
     "@types/react-dom": "15.5.4",
-    "@types/react-redux": "5.0.7",
-    "material-ui": "0.19.1",
-    "moment": "2.18.1",
+    "@types/react-redux": "^5.0.14",
+    "material-ui": "0.20.0",
+    "moment": "2.20.1",
     "opbeat-react": "3.4.0",
     "react": "15.6.1",
-    "react-big-calendar": "0.15.0",
+    "react-big-calendar": "0.17.0",
     "react-dom": "15.6.1",
     "react-redux": "5.0.6",
     "react-scripts-ts": "2.6.0",
@@ -24,7 +24,7 @@
     "redux-thunk": "2.2.0"
   },
   "devDependencies": {
-    "tslint-config-standard": "6.0.1"
+    "tslint-config-standard": "7.0.0"
   },
   "scripts": {
     "start": "react-scripts-ts start",
