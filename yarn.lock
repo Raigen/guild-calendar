@@ -35,7 +35,7 @@
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@types/http-assert/-/http-assert-1.2.0.tgz#0b82993036e86c6ff2944e033b73b57e85ccdcab"
 
-"@types/jest@22.1.0":
+"@types/jest@~22.1.0":
   version "22.1.0"
   resolved "https://registry.yarnpkg.com/@types/jest/-/jest-22.1.0.tgz#c1de03bbac66fac4cc741f7a69cb73bc01a1707c"
 
@@ -88,9 +88,9 @@
   version "8.0.14"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-8.0.14.tgz#4a19dc6bb61d16c01cbadc7b30ac23518fff176b"
 
-"@types/node@~9.3.0":
-  version "9.3.0"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-9.3.0.tgz#3a129cda7c4e5df2409702626892cb4b96546dd5"
+"@types/node@~9.4.0":
+  version "9.4.0"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-9.4.0.tgz#b85a0bcf1e1cc84eb4901b7e96966aedc6f078d1"
 
 "@types/redis@^2.6.0":
   version "2.6.0"
