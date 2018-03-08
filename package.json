@@ -57,7 +57,7 @@
     "koa-static": "^4.0.1",
     "redis": "^2.7.1",
     "tslib": "~1.9.0",
-    "url-search-params-polyfill": "^2.0.0",
+    "url-search-params-polyfill": "^3.0.0",
     "uuid": "^3.1.0"
   }
 }
