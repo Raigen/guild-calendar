@@ -4,8 +4,6 @@ import Dialog, { DialogActions, DialogContent, DialogTitle } from 'material-ui/D
 
 import Button from 'material-ui/Button'
 import TextField from 'material-ui/TextField'
-// import TimePicker from 'material-ui/TimePicker'
-import { TimePicker } from 'material-ui-time-picker'
 
 interface EventDialogProps {
   onCreateEvent: (title: string, description: string, creator: string, from: Date, to: Date) => void
@@ -59,6 +57,8 @@ export class EventDialog extends React.Component<EventDialogProps, EventDialogSt
   }
 
   render () {
+    const now = new Date()
+    const currentTime = `${now.getHours()}:${now.getMinutes()}`
     return <div className='EventDialog'>
       <h2>{this.props.selectedDate.toLocaleDateString('de')}</h2>
       <Button
@@ -81,25 +81,37 @@ export class EventDialog extends React.Component<EventDialogProps, EventDialogSt
             <TextField
               label='Eventname'
               name='title'
+              margin='normal'
               required
             />
             <br />
             <TextField
               label='Beschreibung'
               name='description'
+              margin='normal'
               multiline
             />
-            <TimePicker
+            <br />
+            <TextField
+              label='Von'
               name='from'
-              hintText='Von'
-              minutesStep={5}
-              mode='24h'
+              type='time'
+              defaultValue={currentTime}
+              margin='normal'
+              inputProps={{
+                step: 300
+              }}
             />
-            <TimePicker
+            <br />
+            <TextField
+              label='Bis'
               name='to'
-              hintText='Bis'
-              minutesStep={5}
-              mode='24h'
+              type='time'
+              defaultValue={currentTime}
+              margin='normal'
+              inputProps={{
+                step: 300
+              }}
             />
           </form>
         </DialogContent>
