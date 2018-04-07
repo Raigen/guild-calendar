@@ -66,7 +66,7 @@ export function setAppointment (
 ): Promise<IAppointment> {
   const key = id ? id : uuid.v4()
   return client.hmsetAsync('events', {
-    [key]: JSON.stringify({title, description, from, to, participants: participants})
+    [key]: JSON.stringify({ title, description, from, to, participants: participants })
   })
   .then<IAppointment>(() => getAppointment(key))
 }
