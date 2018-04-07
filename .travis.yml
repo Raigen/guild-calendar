@@ -12,7 +12,9 @@ install:
 - yarn install
 - cd client && yarn install && cd ..
 script:
-- npm run build:all
+- yarn lint
+- cd client && yarn lint && cd ..
+- yarn build:all
 deploy:
   provider: heroku
   api_key:
