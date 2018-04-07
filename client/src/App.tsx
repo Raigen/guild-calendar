@@ -2,6 +2,9 @@ import './App.css'
 
 import * as React from 'react'
 
+import MomentUtils from 'material-ui-pickers/utils/moment-utils'
+import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider'
+
 import {
 loadEventsAsync,
 setAdmin
@@ -33,6 +36,7 @@ if (urlSearchParams.has('admin') && urlSearchParams.get('admin') === 'DEG') {
 class App extends React.Component<any, any> {
   render () {
     return (
+      <MuiPickersUtilsProvider utils={MomentUtils}>
         <Provider store={store}>
           <div className='App'>
             <div className='App-header'>
@@ -43,6 +47,7 @@ class App extends React.Component<any, any> {
             <EventList />
           </div>
         </Provider>
+      </MuiPickersUtilsProvider>
     )
   }
 }

@@ -5,7 +5,7 @@
   "proxy": "http://localhost:3001",
   "dependencies": {
     "material-ui": "^1.0.0-beta.41",
-    "material-ui-time-picker": "^0.1.6",
+    "material-ui-pickers": "^1.0.0-rc.5",
     "moment": "2.22.0",
     "opbeat-react": "3.4.0",
     "react": "16.3.1",

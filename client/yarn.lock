@@ -4604,12 +4604,12 @@ map-visit@^1.0.0:
   dependencies:
     object-visit "^1.0.0"
 
-material-ui-time-picker@^0.1.6:
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/material-ui-time-picker/-/material-ui-time-picker-0.1.6.tgz#0eae73231cfb1998f8e37ec30bef6e15fe869d81"
+material-ui-pickers@^1.0.0-rc.5:
+  version "1.0.0-rc.5"
+  resolved "https://registry.yarnpkg.com/material-ui-pickers/-/material-ui-pickers-1.0.0-rc.5.tgz#36dc60ce7001d469f5db4c45f41efa9930f4913e"
   dependencies:
-    classnames "^2.2.5"
-    prop-types "^15.6.0"
+    babel-runtime "^6.26.0"
+    react-text-mask "^5.1.0"
 
 material-ui@^1.0.0-beta.41:
   version "1.0.0-beta.41"
@@ -5779,7 +5779,7 @@ prop-types-extra@^1.0.1:
   dependencies:
     warning "^3.0.0"
 
-prop-types@^15.5.10, prop-types@^15.5.8, prop-types@^15.6.0:
+prop-types@^15.5.10, prop-types@^15.5.6, prop-types@^15.5.8, prop-types@^15.6.0:
   version "15.6.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.1.tgz#36644453564255ddda391191fb3a125cbdf654ca"
   dependencies:
@@ -6085,6 +6085,12 @@ react-scrollbar-size@^2.0.2:
     prop-types "^15.6.0"
     react-event-listener "^0.5.1"
     stifle "^1.0.2"
+
+react-text-mask@^5.1.0:
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/react-text-mask/-/react-text-mask-5.3.0.tgz#cf1e144f3b96b87edab54a6811fe43934d4f5014"
+  dependencies:
+    prop-types "^15.5.6"
 
 react-transition-group@^2.2.1:
   version "2.3.0"
@@ -6434,8 +6440,8 @@ resolve@1.1.7:
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.1.7.tgz#203114d82ad2c5ed9e8e0411b3932875e889e97b"
 
 resolve@^1.1.7, resolve@^1.3.2:
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.6.0.tgz#0fbd21278b27b4004481c395349e7aba60a9ff5c"
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.7.0.tgz#2bdf5374811207285df0df652b78f118ab8f3c5e"
   dependencies:
     path-parse "^1.0.5"
 
