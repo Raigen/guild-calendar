@@ -88,9 +88,10 @@
   version "8.0.14"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-8.0.14.tgz#4a19dc6bb61d16c01cbadc7b30ac23518fff176b"
 
-"@types/node@~9.6.0":
-  version "9.6.0"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-9.6.0.tgz#d3480ee666df9784b1001a1872a2f6ccefb6c2d7"
+"@types/node@~11.10.6":
+  version "11.10.6"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-11.10.6.tgz#f8eed81174467679fa127a1dbafbfe30c5b188f1"
+  integrity sha512-OUFTF4A3Lgo3kkisJ60r8BWycCkABa8v7KpqGXY3SusQAQQaFO05wa45ZBwVv4n0gkYA8G6i/Bk9zI6dx5Ss6A==
 
 "@types/redis@^2.6.0":
   version "2.6.0"
