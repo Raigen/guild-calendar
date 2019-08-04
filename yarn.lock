@@ -3069,9 +3069,10 @@ tsutils@^2.12.1:
   dependencies:
     tslib "^1.7.1"
 
-tsutils@~2.27.0:
-  version "2.27.0"
-  resolved "https://registry.yarnpkg.com/tsutils/-/tsutils-2.27.0.tgz#9efb252b188eaa0ca3ade41dc410d6ce7eaab816"
+tsutils@~3.15.0:
+  version "3.15.0"
+  resolved "https://registry.yarnpkg.com/tsutils/-/tsutils-3.15.0.tgz#3efabbf2c18a5d7c7496a878be0609eb90897ed6"
+  integrity sha512-or184xKZ6fLE1SrDcvsOs3Wkfb1JgizdKs5Fiag3cp/m9k7C7GWd4E7gs3K5LHAePaIP7K62C20ZZI3JQx8iBQ==
   dependencies:
     tslib "^1.8.1"
 
