@@ -56,7 +56,7 @@
     "koa-bodyparser": "^4.2.0",
     "koa-route": "^3.2.0",
     "koa-static": "^4.0.1",
-    "redis": "^2.7.1",
+    "redis": "^3.0.2",
     "tslib": "~1.9.0",
     "url-search-params-polyfill": "^4.0.0",
     "uuid": "^3.1.0"
