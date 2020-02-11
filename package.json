@@ -43,7 +43,7 @@
   "dependencies": {
     "@types/bluebird": "^3.5.8",
     "@types/bunyan": "^1.8.1",
-    "@types/koa": "^2.0.39",
+    "@types/koa": "^2.11.1",
     "@types/koa-bodyparser": "^4.2.0",
     "@types/koa-route": "^3.2.0",
     "@types/koa-static": "^4.0.0",
