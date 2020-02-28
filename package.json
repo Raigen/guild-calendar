@@ -57,7 +57,7 @@
     "koa-route": "^3.2.0",
     "koa-static": "^4.0.1",
     "redis": "^2.7.1",
-    "tslib": "~1.9.0",
+    "tslib": "~1.11.1",
     "url-search-params-polyfill": "^4.0.0",
     "uuid": "^3.1.0"
   }
