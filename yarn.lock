@@ -24,6 +24,11 @@
   dependencies:
     "@types/node" "*"
 
+"@types/content-disposition@*":
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/@types/content-disposition/-/content-disposition-0.5.2.tgz#18ccb0fd126808e498a820cb8149c0072a2b9066"
+  integrity sha1-GMyw/RJoCOSYqCDLgUnAByorkGY=
+
 "@types/cookies@*":
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/@types/cookies/-/cookies-0.6.1.tgz#d12cbd0f8aa6b9f0d3bfb613b958897a0b348731"
@@ -73,11 +78,24 @@
     "@types/koa" "*"
     "@types/koa-send" "*"
 
-"@types/koa@*", "@types/koa@^2.0.39":
+"@types/koa@*":
   version "2.0.39"
   resolved "https://registry.yarnpkg.com/@types/koa/-/koa-2.0.39.tgz#45ba1249d8849b9b0ff8c1d6d2f80b0838b89ffa"
   dependencies:
     "@types/accepts" "*"
+    "@types/cookies" "*"
+    "@types/http-assert" "*"
+    "@types/keygrip" "*"
+    "@types/koa-compose" "*"
+    "@types/node" "*"
+
+"@types/koa@^2.11.3":
+  version "2.11.3"
+  resolved "https://registry.yarnpkg.com/@types/koa/-/koa-2.11.3.tgz#540ece376581b12beadf9a417dd1731bc31c16ce"
+  integrity sha512-ABxVkrNWa4O/Jp24EYI/hRNqEVRlhB9g09p48neQp4m3xL1TJtdWk2NyNQSMCU45ejeELMQZBYyfstyVvO2H3Q==
+  dependencies:
+    "@types/accepts" "*"
+    "@types/content-disposition" "*"
     "@types/cookies" "*"
     "@types/http-assert" "*"
     "@types/keygrip" "*"
