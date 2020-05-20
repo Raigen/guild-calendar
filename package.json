@@ -41,7 +41,7 @@
   },
   "homepage": "https://github.com/Raigen/guild-calendar#readme",
   "dependencies": {
-    "@types/bluebird": "^3.5.8",
+    "@types/bluebird": "^3.5.32",
     "@types/bunyan": "^1.8.1",
     "@types/koa": "^2.0.39",
     "@types/koa-bodyparser": "^4.2.0",
